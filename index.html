@@ -1,26 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Percent Clock</title>
+	<title>Passage: Relative Time Lines</title>
 	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="schemes.css">
 	<script src="percentClock.js"></script>
 </head>
 <body>
-	<div id="dayClock" class="clock">
-		<canvas id="dayCanvas" width="200" height="200"></canvas>
-		<p id="dayText">Percentage of<br /><span></span> elapsed:</p>
-		<p id="dayTime"></p>
-	</div>
-	<div id="monthClock" class="clock">
-		<canvas id="monthCanvas" width="200" height="200"></canvas>
-		<p id="monthText">Percentage of<br /><span></span> elapsed:</p>
-		<p id="monthTime"></p>
-	</div>
-	<div id="yearClock" class="clock">
-		<canvas id="yearCanvas" width="200" height="200"></canvas>
-		<p id="yearText">Percentage of<br /><span></span> elapsed:</p>
-		<p id="yearTime"></p>
-	</div>
+	<main>
+		<div class="clock-bands" id="allClock">
+			<div class="time-slice" id="yearSlice">
+				<span class="current-time"></span>
+				<span class="time-unit"></span>
+				<span class="percent-gone"></span>
+				<div class="time-band"></div>
+			</div>
+			<div class="time-slice" id="monthSlice">
+				<span class="current-time"></span>
+				<span class="time-unit"></span>
+				<span class="percent-gone"></span>
+				<div class="time-band"></div>
+			</div>
+			<div class="time-slice" id="daySlice">
+				<span class="current-time"></span>
+				<span class="time-unit"></span>
+				<span class="percent-gone"></span>
+				<div class="time-band"></div>
+			</div>
+			<div class="time-slice" id="hourSlice">
+				<span class="current-time"></span>
+				<span class="time-unit"></span>
+				<span class="percent-gone"></span>
+				<div class="time-band"></div>
+			</div>
+			<div class="time-slice" id="minuteSlice">
+				<span class="current-time"></span>
+				<span class="time-unit"></span>
+				<span class="percent-gone"></span>
+				<div class="time-band"></div>
+			</div>
+			<div class="time-slice" id="secondSlice">
+				<span class="current-time"></span>
+				<span class="time-unit"></span>
+				<span class="percent-gone"></span>
+				<div class="time-band"></div>
+			</div>
+		</div>
+	</main>
+	<footer>
+		<cite>Made with ᄽ῟｢❜ﭣ❜｣῏ᄿ by <a href="https://github.com/krry">krry</a></cite>
+		<a class="brand" href="#">PASSAGE</a>
+		<div class="controls">
+			<select name="filters" id="filterList">
+				<option value="" default>Default colors</option>
+				<option value="sepia">Sepiatone</option>
+				<option value="grayscale">Grayscale</option>
+				<option value="invert">Inverted</option>
+				<option value="warmer">Warmer</option>
+				<option value="greener">Greener</option>
+			</select>
+		</div>
+	</footer>
 </body>
 </html>

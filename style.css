@@ -1,50 +1,176 @@
+* {
+  /* de-pixelates light text on dark backgrounds */
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: subpixel-antialiased;
+
+  text-rendering: optimizeLegibility;
+  /* optimizeSpeed turns kerning & ligatures off, optimizeLegibility turns them on */
+  /* geometricPrecision prevents browsers from rounding partial font sizes */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* a more intuitive box model, padding pushes in and doesn't add to width or height */
+}
+
+html {
+  font-family: system-ui; /* pick a team: cursive, fantasy, monospace, sans-serif, serif, system-ui */
+  -webkit-text-size-adjust: 100%; /* stops iOS Safari from normalizing small fonts */
+}
+
 body {
-	background-color: #ccc;
+  margin: 0; /* full bleed!!! */
+}
+
+/* if you want a sub-element of the body to scroll with similar inertia on all touchscreens */
+.scroll-smooth {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+:root {
+	--text-light: hsla(0, 100%, 100%, 1);
+}
+
+body {
+	color: var(--text-light);
+	background-color: black;
+	margin: auto;
+	text-align: center;
+	font-family: "Inconsolata", "Fira Sans", monospace;
+}
+
+main {
+	background-color: hsla(255, 40%, 12%, 1);
+	transition: filter 750ms ease-in-out;
+}
+
+footer {
+	position: fixed;
+	z-index: 2;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	text-align: left;
+	height: 10vh;
+	line-height: 10vh;
+	padding: 0 1rem;
+}
+
+footer cite {
+	font-style: normal;
+}
+
+footer a {
+	color: var(--text-light);
+	text-decoration: none;
+}
+
+footer a.brand {
+	font-size: 2rem;
+	position: absolute;
+	text-align: center;
+	left: 25%;
+	right: 25%;
+}
+
+footer .controls {
+	float: right;
+}
+
+.clock-bands {
+	width: 100vw;
+	height: 100vh;
+	position: relative;
+	text-align: left;
+}
+
+.time-band {
+	height: 100%;
+}
+
+.time-slice {
+	position: relative;
+	height: 15vh;
+	border-bottom: 1px solid white;
+}
+
+/* #secondSlice .current-time:before,
+#minuteSlice .current-time:before {
+	content: ":";
+}
+ */
+.time-unit,
+.current-time,
+.percent-gone {
+	position: absolute;
+	font-weight: 200;
+}
+
+.current-time {
+	left: 0;
+	margin-left: 2rem;
+	color: var(--text-light);
+	font-weight: 700;
+	font-size: 2rem;
+	line-height: 15vh;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	/* text-shadow: 1px 1px var(--text-light), -1px -1px var(--text-light), 1px -1px var(--text-light), -1px 1px var(--text-light); */
+}
+
+.time-unit {
+	left: 1rem;
+	top: 1rem;
+	margin-right: 2rem;
+	color: var(--text-light);
+}
+
+.percent-gone {
+	right: 0.5rem;
+	line-height: 15vh;
+	color: var(--text-light);
+}
+
+.percent-gone:after {
+	content: " passed";
 }
 
 .clock {
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	width: 200px;
-	height: 200px;
-	margin-top: -100px;
+	position: relative;
+	display: inline-block;
+	width: 12rem;
+	height: 12rem;
 	border-radius: 100%;
 	border: 1px solid #333;
 	background-color: #fff;
+	margin: 1rem;
 }
 
-#dayClock {
-	margin-left: -350px;
-}
-
-#monthClock {
-	margin-left: -100px;
-}
-
-#yearClock {
-	margin-left: 150px;
-}
-
-#dayCanvas, #monthCanvas, #yearCanvas {
+.canvasRing {
 	position: absolute;
+	left: 0;
 }
 
 p {
 	text-align: center;
-	font-family: sans-serif;
 	margin: 0;
 }
 
-#dayText, #monthText, #yearText {
-	font-size: 16px;
+.percentLabel {
+	font-size: 1rem;
 	color: #333;
-	margin-top: 58px;
-	line-height: 24px;
+	margin-top: 3.625rem;
+	line-height: 1.5rem;
 }
 
-#dayTime, #monthTime, #yearTime {
-	font-size: 34px;
+.unitLabel {
+	font-size: 2.25rem;
 	color: #555;
-	line-height: 42px;
+	line-height: 2.625rem;
+}
+
+.roberts-clock {
+	padding: 2rem;
 }

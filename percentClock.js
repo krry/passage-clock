@@ -2,91 +2,124 @@ window.addEventListener('load', function load() {
 
     window.removeEventListener('load', load, false);
 
-    var fullDay = 86400,
-        fullMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
-        fullYear = 31536000,
+    // times in seconds except for day-counts of months
+    var secsInDay = 24 * 60 * 60,
+        daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+        secsInYear = 31536000,
         dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-        clocks = ['day', 'month', 'year'];
+        clocks = ['second', 'minute', 'hour', 'day', 'month', 'year']
+        canvas = [],
+        context = [],
+        band = [];
 
     function determineValues() {
 
         var newDate = new Date(),
             percentTime = [];
 
-        percentTime[0] = [];
-        percentTime[1] = [];
+        percentTime[0] = []; // first column, percents
+        percentTime[1] = []; // second column, labels
 
-        // leap year
-
+        // handle leap years
         var year = newDate.getFullYear();
 
         if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)) {
-            fullMonth[1] = 29;
-            fullYear = 31622400;
+            daysInMonth[1] = 29;
+            secsInYear = 31622400;
         }
 
-        var hours = newDate.getHours() * 60 * 60,
-            minutes = newDate.getMinutes() * 60,
-            seconds = newDate.getSeconds(),
-            currentTime = hours + minutes + seconds,
-            dayOfWeek = newDate.getDay();
+        // second completion
+        var milliseconds,
+            seconds,
+            minutes,
+            hours,
+            currentSecond,
+            currentMinute,
+            currentHour,
+            dayOfWeek,
+            thisDate,
+            month,
+            currentMonth,
+            timeOfMonth,
+            timeOfYear;
 
-        percentTime[0][0] = currentTime / fullDay;
-        percentTime[1][0] = dayNames[dayOfWeek];
+        milliseconds = newDate.getMilliseconds();
+        currentSecond = (newDate.getSeconds() * 1000) + milliseconds;
+        currentMinute = (newDate.getMinutes() * 60 * 1000) + currentSecond;
+        currentHour = (newDate.getHours() * 60 * 60 * 1000) + currentMinute;
+        dayOfWeek = newDate.getDay();
+        thisDate = newDate.getDate();
+        month = newDate.getMonth();
+        currentMonth = daysInMonth[month] * secsInDay;
+        timeOfMonth = (thisDate - 1) * secsInDay + (currentHour / 1000);
+        timeOfYear = timeOfMonth;
 
-        var month = newDate.getMonth(),
-            currentMonth = fullMonth[month] * fullDay;
-            dayOfMonth = (newDate.getDate() - 1) * fullDay + currentTime;
+        percentTime[0][0] = milliseconds / 1000;
+        percentTime[1][0] = (currentSecond / 1000).toFixed(3);
 
-        percentTime[0][1] = dayOfMonth / currentMonth;
-        percentTime[1][1] = monthNames[month];
+        percentTime[0][1] = currentSecond / 60000;
+        percentTime[1][1] = ((currentMinute / 60000).toFixed(0) > 9 ? newDate.getMinutes() : '0' + newDate.getMinutes());
 
-        var dayOfYear = dayOfMonth;
+        percentTime[0][2] = currentMinute / 3600000;
+        percentTime[1][2] = ((currentHour / (secsInDay * 1000)).toFixed(0) > 9 ? newDate.getHours() : '0' + newDate.getHours());
+
+        percentTime[0][3] = currentHour / (secsInDay * 1000);
+        percentTime[1][3] = thisDate + ' ' + dayNames[dayOfWeek];
+
+        percentTime[0][4] = timeOfMonth / currentMonth;
+        percentTime[1][4] = monthNames[month];
 
         for (var i = 0; i <= (month - 1); i++) {
-            dayOfYear = dayOfYear + fullMonth[i] * fullDay;
+            timeOfYear = timeOfYear + daysInMonth[i] * secsInDay;
         }
 
-        percentTime[0][2] = dayOfYear / fullYear;
-        percentTime[1][2] = year;
+        percentTime[0][5] = timeOfYear / secsInYear;
+        percentTime[1][5] = year;
 
         return percentTime;
     }
 
     function printTime(i, percentTime) {
 
-        thisTime = percentTime[0][i] * 100;
-        thisTime = thisTime.toFixed(2);
-        thisTime = thisTime + '%';
+        thisPercent = percentTime[0][i] * 100;
+        thisPercent = thisPercent.toFixed(2);
+        thisPercent = thisPercent + '%';
 
-        var time = document.getElementById( clocks[i] + 'Time');
-        time.innerHTML = thisTime;
-
-        var text = document.getElementById( clocks[i] + 'Text').getElementsByTagName('span')[0];
-        text.innerHTML = percentTime[1][i];
-    }
-
-    var canvas = [],
-        context = [],
-        j = 0;
-
-    while (j <= 2) {
-        canvas[j] = document.getElementById( clocks[j] + 'Canvas');
-        context[j] = canvas[j].getContext('2d');
-        context[j].translate(100, 100);
-        context[j].rotate(-90 * Math.PI / 180);
-        j++;
+        var percentBand = document.querySelector('#' + clocks[i] + 'Slice > .percent-gone');
+        percentBand.innerHTML = thisPercent;
+        var time = document.querySelector('#' + clocks[i] + 'Slice > .current-time');
+        time.innerHTML = percentTime[1][i];
     }
 
     function drawCanvas(i, percentTime) {
 
-        var thisPercentTime = [];
-        thisPercentTime[i] = percentTime[0][i] * 2;
-        context[i].beginPath();
-        context[i].clearRect(-100, -100, 200, 200);
-        context[i].arc(0, 0, 90, 0, thisPercentTime[i] * Math.PI);
-        context[i].stroke();
+        var thisPercentTime = [],
+            thisTime;
+
+        thisPercentTime[i] = percentTime[0][i];
+
+        band[i] = document.querySelector('#' + clocks[i] + 'Slice > .time-band');
+        thisTime = percentTime[0][i] * 100;
+        thisTime = thisTime.toFixed(2);
+        thisTime = thisTime + '%';
+
+        band[i].style.width = thisTime;
+    }
+
+    function setupClocks() {
+
+      var j = 0,
+          text,
+          unit;
+
+      percentTime = determineValues();
+
+      while (j < clocks.length) {
+        unit = document.querySelector('#' + clocks[j] + 'Slice > .time-unit');
+        unit.innerHTML = clocks[j];
+        j++;
+      }
     }
 
     function updateClock() {
@@ -94,14 +127,34 @@ window.addEventListener('load', function load() {
         percentTime = determineValues();
         var i = 0;
 
-        while (i <= 2) {
+        while (i < clocks.length) {
             printTime(i, percentTime);
             drawCanvas(i, percentTime);
             i++;
         }
     }
 
+    function wireControls() {
+      var filterList = document.getElementById('filterList');
+      filterList.addEventListener( 'change', function() {
+        document.getElementsByTagName('main')[0].classList = [];
+        if(this.value === "grayscale") {
+          document.getElementsByTagName('main')[0].classList.add('grayscale');
+        } else if (this.value === "sepia") {
+          document.getElementsByTagName('main')[0].classList.add('sepia');
+        } else if (this.value === "invert") {
+          document.getElementsByTagName('main')[0].classList.add('invert');
+        } else if (this.value === "warmer") {
+          document.getElementsByTagName('main')[0].classList.add('warmer');
+        } else if (this.value === "greener") {
+          document.getElementsByTagName('main')[0].classList.add('greener');
+        }
+      });
+    }
+
+    wireControls();
+    setupClocks();
     updateClock();
-    setInterval(updateClock, 1000);
+    setInterval(updateClock, 10);
 
 }, true);

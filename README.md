@@ -1,9 +1,7 @@
-# Percent Clock
+# Passage: Relative Time Lines
 
-displays the percentage of time elapsed today, this month and this year.
+Inspired by Justice whose preferred clock displays the percentage of the day now past.
 
-    git clone git@github.com:robertmermet/percentclock.git
+Started as a clone of @robertmermet's [Percent Clock](git@github.com:robertmermet/percentclock.git)
 
->**demo** [robertmermet.com/projects/percentclock](http://robertmermet.com/projects/percentclock)
-
->**author** [robertmermet.com](http://robertmermet.com)
+## [Live demo](https://codepen.io/krry/live/ddbPLb)
