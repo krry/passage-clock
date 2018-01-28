@@ -1,4 +1,4 @@
-# Passage: Relative Time Lines
+# PassageClock: Relative Time Lines
 
 Inspired by Justice whose preferred clock displays the percentage of the day now past.
 
