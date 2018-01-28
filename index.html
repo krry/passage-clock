@@ -7,52 +7,22 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" type="text/css" href="schemes.css">
-	<script src="percentClock.js"></script>
+	<script src="passageClock.js"></script>
 </head>
 <body>
 	<main>
-		<div class="clock-bands" id="allClock">
-			<div class="time-slice" id="yearSlice">
-				<span class="current-time"></span>
-				<span class="time-unit"></span>
-				<span class="percent-gone"></span>
-				<div class="time-band"></div>
-			</div>
-			<div class="time-slice" id="monthSlice">
-				<span class="current-time"></span>
-				<span class="time-unit"></span>
-				<span class="percent-gone"></span>
-				<div class="time-band"></div>
-			</div>
-			<div class="time-slice" id="daySlice">
-				<span class="current-time"></span>
-				<span class="time-unit"></span>
-				<span class="percent-gone"></span>
-				<div class="time-band"></div>
-			</div>
-			<div class="time-slice" id="hourSlice">
-				<span class="current-time"></span>
-				<span class="time-unit"></span>
-				<span class="percent-gone"></span>
-				<div class="time-band"></div>
-			</div>
-			<div class="time-slice" id="minuteSlice">
-				<span class="current-time"></span>
-				<span class="time-unit"></span>
-				<span class="percent-gone"></span>
-				<div class="time-band"></div>
-			</div>
-			<div class="time-slice" id="secondSlice">
-				<span class="current-time"></span>
-				<span class="time-unit"></span>
-				<span class="percent-gone"></span>
-				<div class="time-band"></div>
-			</div>
-		</div>
+		<div id="slice_list" class="slices"></div>
+		<script id="slice_template" type="x-template">
+			<span class="time-unit"></span>
+			<span class="current-time"></span>
+			<span class="percent-gone"></span>
+			<div class="time-band"></div>
+			<a class="remove-slice" href="#">x</a>
+		</script>
 	</main>
 	<footer>
-		<cite>Made with ᄽ῟｢❜ﭣ❜｣῏ᄿ by <a href="https://github.com/krry">krry</a></cite>
 		<a class="brand" href="#">PASSAGE</a>
+		<cite><a href="https://github.com/krry/passage-clock/" target="_blank">made with ᄽ῟｢❜ﭣ❜｣῏ᄿ by krry</a></cite>
 		<div class="controls">
 			<select name="filters" id="filterList">
 				<option value="" default>Default colors</option>

@@ -1,0 +1,57 @@
+main, footer {
+	background-color: hsla(200, 28%, 12%, 1);
+	transition: filter 750ms ease-in-out;
+}
+
+main.grayscale,
+footer.grayscale {
+	filter: grayscale(100%);
+}
+
+main.sepia,
+footer.sepia {
+	filter: sepia(100%);
+}
+
+main.invert,
+footer.invert {
+	filter: invert(100%);
+}
+
+main.warmer,
+footer.warmer {
+	filter: hue-rotate(120deg);
+}
+
+main.greener,
+footer.greener {
+	filter: hue-rotate(-120deg);
+}
+
+.time-slice:nth-of-type(n) .time-band {
+	background-color: hsla(280, 32%, 16%, 1);
+}
+
+.time-slice:nth-of-type(n+1) .time-band {
+	background-color: hsla(270, 36%, 20%, 1);
+}
+
+.time-slice:nth-of-type(n+2) .time-band {
+	background-color: hsla(260, 40%, 24%, 1);
+}
+
+.time-slice:nth-of-type(n+3) .time-band {
+	background-color: hsla(250, 44%, 28%, 1);
+}
+
+.time-slice:nth-of-type(n+4) .time-band {
+	background-color: hsla(240, 48%, 32%, 1);
+}
+
+.time-slice:nth-of-type(n+5) .time-band {
+	background-color: hsla(230, 52%, 36%, 1);
+}
+
+.time-slice:nth-of-type(n+6) .time-band {
+	background-color: hsla(220, 56%, 40%, 1);
+}
