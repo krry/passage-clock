@@ -7,14 +7,15 @@ window.addEventListener('load', function load() {
         MONTH_DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
         DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-        dayOfWeek;
+        dayOfWeek,
+        REFRESH_RATE = 15; // every 15ms
 
     // execute
     generateSlices();
     wireControls();
     wireRemovers();
     updateClock();
-    setInterval(updateClock, 10);
+    setInterval(updateClock, REFRESH_RATE);
 
     // populates DOM with slices and spaces them out vertically
     function generateSlices() {

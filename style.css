@@ -25,10 +25,14 @@ html {
 body {
 	margin: 0;
 	color: var(--text-light);
-	background-color: black;
 	margin: auto;
 	text-align: center;
 	font-family: "Inconsolata", "Fira Sans", monospace;
+  background-color: black;
+  background-image: url('bronto.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 }
 
 footer {
