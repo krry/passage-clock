@@ -1,0 +1,32 @@
+{
+  "name": "passageclock",
+  "version": "1.0.0",
+  "description": "a clock that focuses on the passage of various slices of time",
+  "main": "index.html",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krry/passage-clock.git"
+  },
+  "keywords": [
+    "clock",
+    "percentage",
+    "decimal",
+    "passage"
+  ],
+  "author": "krry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/krry/passage-clock/issues"
+  },
+  "homepage": "https://github.com/krry/passage-clock#readme",
+  "devDependencies": {
+    "css-loader": "^0.28.9",
+    "style-loader": "^0.20.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1"
+  }
+}

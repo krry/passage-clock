@@ -1,3 +1,6 @@
+import './style.css';
+import './schemes.css';
+
 window.addEventListener('load', function load() {
 
   window.removeEventListener('load', load, false);
@@ -16,7 +19,7 @@ window.addEventListener('load', function load() {
       MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
       dayOfWeek,
       monthName,
-      REFRESH_RATE = 100; // every 15ms
+      REFRESH_RATE = 20; // every few ms
 
   // execute
   generateSlices();
