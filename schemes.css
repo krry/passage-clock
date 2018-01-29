@@ -1,30 +1,37 @@
-main, footer {
+header,
+main,
+footer {
 	background-color: hsla(200, 28%, 12%, 0.6);
 	transition: filter 750ms ease-in-out;
 }
 
-main.grayscale,
-footer.grayscale {
+body.grayscale header,
+body.grayscale main,
+body.grayscale footer {
 	filter: grayscale(100%);
 }
 
-main.sepia,
-footer.sepia {
+body.sepia header,
+body.sepia main,
+body.sepia footer {
 	filter: sepia(100%);
 }
 
-main.invert,
-footer.invert {
+body.invert header,
+body.invert main,
+body.invert footer {
 	filter: invert(100%);
 }
 
-main.warmer,
-footer.warmer {
+body.warmer header,
+body.warmer main,
+body.warmer footer {
 	filter: hue-rotate(120deg);
 }
 
-main.greener,
-footer.greener {
+body.greener header,
+body.greener main,
+body.greener footer {
 	filter: hue-rotate(-120deg);
 }
 

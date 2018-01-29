@@ -4,14 +4,21 @@
 	<title>PassageClock</title>
 	<meta description="A clock made of running, relative time lines. Don't think twice, it's alright.">
 	<meta charset="UTF-8">
+	<meta name="theme-color" content="#1F570E">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" type="text/css" href="schemes.css">
-	<script src="passageClock.js"></script>
+	<link rel="canonical" href="https://passageclock.krry.me">
+	<link rel="manifest" href="/manifest.json">
 </head>
-<body>
-	<main class="greener">
+<body class="greener">
+	<div id="welcome_back" class="curtain"></div>
+	<header>
+		<a class="brand" href="#">PASSAGECLOCK</a>
+		<cite><a href="https://github.com/krry/passage-clock/" target="_blank">made with ᄽ῟｢❜ﭣ❜｣῏ᄿ by krry</a></cite>
+	</header>
+	<main>
 		<div id="slice_list" class="slices"></div>
 		<script id="slice_template" type="x-template">
 			<span class="time-unit"></span>
@@ -21,9 +28,7 @@
 			<a class="remove-slice" href="#">x</a>
 		</script>
 	</main>
-	<footer class="greener">
-		<a class="brand" href="#">PASSAGECLOCK</a>
-		<cite><a href="https://github.com/krry/passage-clock/" target="_blank">made with ᄽ῟｢❜ﭣ❜｣῏ᄿ by krry</a></cite>
+	<footer>
 		<div class="controls">
 			<select name="filters" id="filterList">
 				<option value="">Default</option>
@@ -35,5 +40,13 @@
 			</select>
 		</div>
 	</footer>
+	<script src="passageClock.js"></script>
+	<script>
+		if('serviceWorker' in navigator) {
+			navigator.serviceWorker
+			.register('/sw.js')
+			.then(function() { console.log('Service worker registered'); });
+		}
+	</script>
 </body>
 </html>
