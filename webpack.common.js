@@ -1,7 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const CleanWebpackPlugin = require("clean-webpack-plugin")
-const GoogleFontsPlugin = require("google-fonts-webpack-plugin")
+// const GoogleFontsPlugin = require("google-fonts-webpack-plugin")
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
@@ -9,6 +9,7 @@ module.exports = {
     index: './src/index.js',
   },
   output: {
+    filename: '[name].bundle.js',
     chunkFilename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
@@ -37,13 +38,13 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      title: 'Identity'
+      title: 'Passage Clock'
     }),
-    new GoogleFontsPlugin({
-			fonts: [
-				{ family: "Montserrat" },
-			]
-		}),
+    // new GoogleFontsPlugin({
+		// 	fonts: [
+		// 		{ family: "Montserrat" },
+		// 	]
+		// }),
     new ExtractTextPlugin({
       filename: 'styles.css'
     }),

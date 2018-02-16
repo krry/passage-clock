@@ -1,11 +1,11 @@
 {
-  "name": "identity",
+  "name": "passage-clock",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
-    "start": "webpack-dev-server --open --config webpack.dev.js"
+    "dev": "webpack-dev-server --open --config webpack.dev.js"
   },
   "keywords": [],
   "author": "",
