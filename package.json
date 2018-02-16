@@ -1,32 +1,30 @@
 {
-  "name": "passageclock",
+  "name": "identity",
   "version": "1.0.0",
-  "description": "a clock that focuses on the passage of various slices of time",
-  "main": "index.html",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "dev": "webpack-dev-server"
+    "build": "webpack --config webpack.prod.js",
+    "start": "webpack-dev-server --open --config webpack.dev.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/krry/passage-clock.git"
-  },
-  "keywords": [
-    "clock",
-    "percentage",
-    "decimal",
-    "passage"
-  ],
-  "author": "krry",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/krry/passage-clock/issues"
-  },
-  "homepage": "https://github.com/krry/passage-clock#readme",
   "devDependencies": {
+    "clean-webpack-plugin": "^0.1.18",
     "css-loader": "^0.28.9",
-    "style-loader": "^0.20.1",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.11.1"
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.6",
+    "google-fonts-webpack-plugin": "^0.4.4",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^2.30.1",
+    "style-loader": "^0.20.2",
+    "uglifyjs-webpack-plugin": "^1.1.8",
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.1",
+    "webpack-merge": "^4.1.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.5"
   }
 }

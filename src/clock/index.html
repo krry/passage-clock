@@ -1,0 +1,25 @@
+<header>
+  <a class="brand" href="#">PASSAGE</a>
+  <cite><a href="https://github.com/krry/passage-clock/" target="_blank">made with ᄽ῟｢❜ﭣ❜｣῏ᄿ by krry</a></cite>
+</header>
+<main id="slice_list" class="slices"></main>
+<script id="slice_template" type="x-template">
+  <span class="time-unit"></span>
+  <span class="current-time"></span>
+  <span class="percent-gone"></span>
+  <div class="time-band"></div>
+  <a class="hide-slice" href="#">x</a>
+</script>
+<footer>
+  <div class="controls">
+    <button id="play_pause">Play/pause</button>
+    <select name="filters" id="filter_list">
+      <option value="" selected>Default</option>
+      <option value="sepia">Sepiatone</option>
+      <option value="grayscale">Grayscale</option>
+      <option value="invert">Inverted</option>
+      <option value="warmer" >Warmer</option>
+      <option value="greener">Greener</option>
+    </select>
+  </div>
+</footer>

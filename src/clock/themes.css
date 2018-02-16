@@ -1,37 +1,25 @@
-header,
-main,
-footer {
+section.clock {
 	background-color: hsla(200, 28%, 12%, 0.6);
-	transition: filter 750ms ease-in-out;
+	transition: all 500ms ease-in-out;
 }
 
-body.grayscale header,
-body.grayscale main,
-body.grayscale footer {
+body.grayscale section.clock {
 	filter: grayscale(100%);
 }
 
-body.sepia header,
-body.sepia main,
-body.sepia footer {
+body.sepia section.clock {
 	filter: sepia(100%);
 }
 
-body.invert header,
-body.invert main,
-body.invert footer {
+body.invert section.clock {
 	filter: invert(100%);
 }
 
-body.warmer header,
-body.warmer main,
-body.warmer footer {
+body.warmer section.clock {
 	filter: hue-rotate(120deg);
 }
 
-body.greener header,
-body.greener main,
-body.greener footer {
+body.greener section.clock {
 	filter: hue-rotate(-120deg);
 }
 
