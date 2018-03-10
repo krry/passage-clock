@@ -8,7 +8,6 @@ module.exports = merge(common, {
   devServer: {
     contentBase: './dist',
     hot: true,
-    disabledHostCheck: true,
   },
   plugins: [
     new webpack.NamedModulesPlugin(),
