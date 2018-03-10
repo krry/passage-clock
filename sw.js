@@ -6,7 +6,9 @@ self.addEventListener('install', function(e) {
         '/style.css',
         '/schemes.css',
         '/passageClock.js',
-        '/bronto.jpg'
+        '/bronto.jpg',
+        '/yosemite-bkgd.mp4',
+        '/yosemite-bkgd.webm',
       ]);
     })
   );

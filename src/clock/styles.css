@@ -6,7 +6,7 @@
 
 body {
   color: var(--text-light);
-	background-image: url('./bronto.jpg');
+	/*background-color: black;*/
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -16,6 +16,8 @@ section {
 	width: 100vw;
 	height: 100vh;
 	display: grid;
+	position: relative;
+	z-index: 2;
 	grid-template-columns: auto;
 	grid-template-rows: 7.5vh auto 7.5vh;
 	grid-template-areas:
@@ -50,6 +52,14 @@ header a.brand {
 	font-size: 2rem;
 	font-weight: 700;
 	letter-spacing: 4px;
+}
+
+.backtube-container {
+	z-index: -1;
+}
+
+.backtube-cover {
+	background: hsla(0, 0%, 0%, 0.2) !important;
 }
 
 .slices {
@@ -146,4 +156,32 @@ cite {
 	appearance: menulist-button;
 	padding: 4px;
 	text-align: center;
+}
+
+.video-bkgd {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+	z-index: -100;
+	transform: translateX(-50%) translateY(-50%);
+	background: url('./bronto.jpg') no-repeat;
+	background-size: cover;
+	transition: 1s opacity;
+}
+
+.stopfade {
+	opacity: 0.5;
+}
+
+@media screen and (max-device-width: 800px) {
+  body {
+		background: url(./bronto.jpg) #000 no-repeat center center fixed;
+	}
+  #bgvid {
+		display: none;
+	}
 }

@@ -3,18 +3,21 @@ import './themes.css';
 
 // set CONSTANTS
 // TODO: put the milliseconds in the header
-// var SLICES = ['ms', 'sec', 'min', 'hr', 'day', 'wk', 'mo', 'yr'],
-var SLICES = ['second', 'minute', 'hour', 'day', 'week', 'month', 'year'],
+// let SLICES = ['ms', 'sec', 'min', 'hr', 'day', 'wk', 'mo', 'yr'],
+let SLICES = ['second', 'minute', 'hour', 'day', 'week', 'month', 'year'],
     MONTH_DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
     DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
     dayOfWeek,
     monthName,
     REFRESH_RATE = 25,
-    clock; // every few ms
+    refreshRate,
+    clock, // every few ms
+    clockPauser;
+
 
 function startTicking(interval) {
-  var interval = interval || REFRESH_RATE;
+  refreshRate = interval || REFRESH_RATE;
   generateSlices();
   wireControls();
   wireHiders();
@@ -25,7 +28,7 @@ function startTicking(interval) {
 // populates DOM with slices and spaces them out vertically
 function generateSlices() {
 
-  var sliceList,
+  let sliceList,
       sliceTemplate,
       sliceHeight,
       suffix,
@@ -36,8 +39,8 @@ function generateSlices() {
   sliceList.innerHTML = "";
   sliceTemplate = document.getElementById('slice_template').innerHTML;
 
-  for (var i = 0; i < slices.length; i++) {
-    var el = document.createElement('div');
+  for (let i = 0; i < slices.length; i++) {
+    let el = document.createElement('div');
     el.innerHTML = sliceTemplate;
     el.classList.add('time-slice');
     el.id = slices[i] + 'Slice';
@@ -52,36 +55,38 @@ function generateSlices() {
 // wire up the color scheme controller
 function wireControls() {
 
-  var filterList = document.getElementById('filter_list');
-  var playPause = document.getElementById('play_pause');
-  var flipClasses = function(evt) {
+  let filterList = document.getElementById('filter_list');
+  let flipClasses = function(evt) {
     // TODO: toggle inverted instead of removing it
     document.body.classList = [];
     document.body.classList.add(evt.target.value);
     return false;
   };
-  playPause.addEventListener('click', pauseClock, {once: true});
+  clockPauser = document.getElementById('clock_pauser');
+  clockPauser.addEventListener('click', pauseClock, {once: true});
   filterList.addEventListener( 'change', flipClasses, false);
   return false;
 }
 
 function pauseClock(evt) {
-  var playPauseBtn = (typeof(evt) !== 'undefined') ? evt.target : document.getElementById('play_pause');
+  let playPauseBtn = (typeof(evt) !== 'undefined') ? evt.target : clockPauser;
   clearInterval(clock);
   playPauseBtn.addEventListener('click', startClock, {once: true});
+  clockPauser.innerHTML = 'Time stopped';
   return false;
 }
 
 function startClock(evt) {
-  var playPauseBtn = (typeof(evt) !== 'undefined') ? evt.target : document.getElementById('play_pause');
-  clock = setInterval(updateClock, REFRESH_RATE);
+  let playPauseBtn = (typeof(evt) !== 'undefined') ? evt.target : clockPauser;
+  clock = setInterval(updateClock, refreshRate);
   playPauseBtn.addEventListener('click', pauseClock, {once: true});
+  clockPauser.innerHTML = 'Stop time';
 }
 
 // gets slices and parses them into the DOM
 function updateClock() {
 
-  var slices = sliceTime();
+  let slices = sliceTime();
 
   function percent(i) {
     return (slices.passage[SLICES[i]] * 100).toFixed(2) + '%';
@@ -90,7 +95,7 @@ function updateClock() {
     return slices.display[SLICES[i]];
   }
 
-  for (var i = 0; i < SLICES.length; i++) {
+  for (let i = 0; i < SLICES.length; i++) {
     document.querySelector('#' + SLICES[i] + 'Slice > .current-time').innerHTML = display(i);
     document.querySelector('#' + SLICES[i] + 'Slice > .percent-gone').innerHTML = percent(i);
     document.querySelector('#' + SLICES[i] + 'Slice > .time-band').style.width = percent(i);
@@ -98,7 +103,7 @@ function updateClock() {
   return false;
 }
 
-var pc = {
+let pc = {
   thisMoment: {},
   current: {},
   msInA: {},
@@ -198,10 +203,10 @@ function twoDigify(numba) {
 
 function wireHiders () {
 
-  var hiders = document.getElementsByClassName('hide-slice');
+  let hiders = document.getElementsByClassName('hide-slice');
 
-  var removeSlice = function (evt) {
-    var sliceDiv,
+  let removeSlice = function (evt) {
+    let sliceDiv,
         index,
         sliceName;
 
@@ -211,7 +216,7 @@ function wireHiders () {
 
     if (index > -1) {
 
-      var sliceHeight,
+      let sliceHeight,
           suffix;
 
       SLICES.splice(index, 1);
@@ -225,7 +230,7 @@ function wireHiders () {
     return false;
   };
 
-  for (var i = 0; i < hiders.length; i++) {
+  for (let i = 0; i < hiders.length; i++) {
     hiders[i].addEventListener('click', removeSlice, {once: true});
   }
   return false;

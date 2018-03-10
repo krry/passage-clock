@@ -25,6 +25,8 @@
     "webpack-merge": "^4.1.1"
   },
   "dependencies": {
+    "babel-runtime": "^6.26.0",
+    "back-tube": "^0.1.3",
     "lodash": "^4.17.5"
   }
 }
