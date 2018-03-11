@@ -38,7 +38,8 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      title: 'Passage Clock'
+      title: 'Passage Clock',
+      template: 'src/index.html'
     }),
     // new GoogleFontsPlugin({
 		// 	fonts: [
