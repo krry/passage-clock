@@ -19,9 +19,18 @@ body {
 
 button,
 select {
-	-webkit-appearance: inherit;
-	-moz-appearance: inherit;
-	appearance: inherit;
+	background: hsl(0, 0%, 100%);
+  border-radius: 4px;
+  border-style: solid;
+  border-color: hsla(280, 32%, 16%, 0.8);
+  border-width: 3px;
+  /* padding: 0.375em 0.75em; */
+  line-height: 1;
+  margin: 0.25em 0;
+  height: auto;
+  font-size: 12px;
+  font-family: inherit;
+  font-weight: bolder;
 }
 
 section {
@@ -164,8 +173,11 @@ cite {
 }
 
 .controls select {
-	padding: 4px;
-	text-align: center;
+	-webkit-appearance: menulist-button;
+	-moz-appearance: menulist-button;
+	appearance: menulist-button;
+	/* padding: 4px; */
+	/* text-align: center; */
 }
 
 .video-bkgd {
