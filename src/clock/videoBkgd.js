@@ -34,6 +34,7 @@ function wireVideoBkgd () {
     vid.removeAttribute("autoplay");
     vid.pause();
     videoPauser.innerHTML = "Video paused";
+    vid.style.display = "none";
   }
 
   function vidFade() {

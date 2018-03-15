@@ -11,6 +11,19 @@ body {
   background-position: center center;
 }
 
+@media screen and (max-width: 400px) {
+	body {
+		font-size: 80%;
+	}
+}
+
+button,
+select {
+	-webkit-appearance: inherit;
+	-moz-appearance: inherit;
+	appearance: inherit;
+}
+
 section {
 	width: 100vw;
 	height: 100vh;
@@ -37,7 +50,7 @@ footer {
 
 header, footer {
 	align-self: center;
-	padding: 0 1rem;
+	padding: 0 1em;
 }
 
 header a,
@@ -47,7 +60,7 @@ footer a {
 }
 
 header a.brand {
-	font-size: 2rem;
+	font-size: 2em;
 	font-weight: 700;
 	letter-spacing: 4px;
 }
@@ -69,10 +82,16 @@ header a.brand {
 .time-slice {
 	transition: opacity 500ms ease-out;
 	display: grid;
-	grid-template-columns: 7rem 7rem auto 4rem;
+	grid-template-columns: 7em 7em auto 4em;
 	grid-column-gap: var(--grid-gap);
 	align-content: center;
 	position: relative;
+}
+
+@media screen and (max-width: 400px) {
+	.time-slice {
+		grid-template-columns: 6em 6em auto 3em;
+	}
 }
 
 .time-slice.hidden {
@@ -84,9 +103,9 @@ header a.brand {
 .percent-gone,
 .hide-slice {
 	color: var(--text-light);
-	font-size: 1.25rem;
+	font-size: 1.25em;
 	font-weight: 200;
-	padding: 1rem 0rem;
+	padding: 1em 0em;
 	align-self: end;
 	justify-self: stretch;
 	position: relative;
@@ -105,8 +124,8 @@ header a.brand {
 
 .percent-gone {
 	justify-self: center;
-	padding: 0.625rem 1rem;
-	font-size: 2rem;
+	padding: 0.625em 1em;
+	font-size: 2em;
 }
 
 /* TODO: visualize past or passed graphically */
@@ -115,7 +134,7 @@ header a.brand {
   text-decoration: none;
   z-index: 4;
 	align-self: center;
-	font-size: 1rem;
+	font-size: 1em;
 	background: none;
 	text-align: center;
 }
@@ -145,9 +164,6 @@ cite {
 }
 
 .controls select {
-	-webkit-appearance: menulist-button;
-	-moz-appearance: menulist-button;
-	appearance: menulist-button;
 	padding: 4px;
 	text-align: center;
 }
