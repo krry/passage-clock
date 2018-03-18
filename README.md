@@ -8,7 +8,7 @@ Started as a clone of [@robertmermet's](http://robertmermet.com/) [Percent Clock
 
 ## TODO
 
-[x] let users choose a color scheme
-[x] allow users to remove time slices
-[ ] allow time origin adjustment for timers, i.e. time from now, time till then
-[x] alias the now.sh demo for permanent linking
+- [x] let users choose a color scheme
+- [x] allow users to remove time slices
+- [ ] allow time origin adjustment for timers, i.e. time from now, time till then
+- [x] alias the now.sh demo for permanent linking
