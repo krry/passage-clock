@@ -3,10 +3,10 @@ self.addEventListener('install', function(e) {
     caches.open('passageClock').then(function(cache) {
       return cache.addAll([
         '/',
-        '/style.css',
-        '/schemes.css',
-        '/passageClock.js',
-        '/bronto.jpg',
+        '/styles.css',
+        '/themes.css',
+        '/index.js',
+        '/index.bundle.js'
       ]);
     })
   );

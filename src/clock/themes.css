@@ -15,30 +15,48 @@ section.clock {
   background-color: hsla(0deg, 0%, 0%, 0.1);
 }
 
-#clock.inverted {
-  filter: invert(100%);
+#clock.negative {
+  filter: invert(1) brightness(0.8) saturate(1.2);
+}
+
+#clock.ghost {
+  filter: sepia(1) invert(1) brightness(0.8) saturate(1);
 }
 
 #clock.grayscale {
-  filter: grayscale(100%);
+  filter: grayscale(1) contrast(1.2) brightness(1.2);
+}
+
+#clock.kodachrome {
+  filter: saturate(2.22) brightness(1.3) contrast(0.9);
 }
 
 #clock.sepiatone {
-  filter: sepia(100%);
-}
-
-#clock.arctic {
-  filter: hue-rotate(0deg);
+  filter: sepia(1) brightness(0.9) contrast(1.1) saturate(1.1);
 }
 
 #clock.volcano {
-  filter: hue-rotate(120deg);
+  filter: hue-rotate(108deg) saturate(1.5);
+}
+
+#clock.arctic {
+  filter: hue-rotate(-30deg) saturate(1.5);
 }
 
 #clock.jungle {
-  filter: hue-rotate(-90deg);
+  filter: hue-rotate(-90deg) saturate(1.5);
 }
-
+/*
+TODO: refactor these dynamically in javascript to color the slices relative to each other
+inputs:
+  - a starting hue (in deg for hsla())
+  - a step (size of iteration from 0 to 1)
+  - qualities to leave static (h, s, l, a)
+  - directions for iteration for each quality
+  - number of iterations
+output:
+  like below for any number of slices
+*/
 .time-slice:nth-of-type(n) .time-band {
   background-color: hsla(180, 60%, 44%, 0.8);
 }

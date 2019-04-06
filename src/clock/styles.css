@@ -19,6 +19,7 @@
   align-content: stretch;
   justify-content: stretch;
   color: var(--text-light);
+  /* TODO: layer in a local backup background image */
   background:
     url("https://source.unsplash.com/collection/4593575")
     #131313 no-repeat center center fixed;
@@ -62,6 +63,7 @@ header a.brand {
   display: grid;
   grid-area: main;
   grid-template-rows: auto;
+  grid-row-gap: 4px;
 }
 
 .slices.flex {
@@ -84,8 +86,7 @@ header a.brand {
 
 @media screen and (max-width: 400px) {
   .clock {
-    grid-template-rows: 7.5vh auto auto;
-    grid-row-gap: 2em;
+    grid-template-rows: 5em auto 6em;
   }
 
   .time-slice {
@@ -112,8 +113,9 @@ header a.brand {
   color: var(--text-light);
   font-size: 1.25em;
   font-weight: 200;
-  padding: 1em 0;
-  align-self: end;
+  /* align text vertically in row */
+  align-self: baseline;
+  /* justify-self horizontally within row */
   justify-self: stretch;
   position: relative;
   z-index: 2;
@@ -121,18 +123,20 @@ header a.brand {
 
 .time-unit {
   justify-self: end;
+  font-weight: 300;
 }
 
 .current-time {
   letter-spacing: 2px;
   text-transform: uppercase;
   justify-self: start;
+  font-weight: 700;
 }
 
 .percent-gone {
   justify-self: center;
-  padding: 0.625em 1em;
-  font-size: 2em;
+  font-size: 1.25em;
+  opacity: 0.75;
   font-family: "IBM Plex Mono", monospace;
 }
 
@@ -248,7 +252,7 @@ cite.signature {
   width: 100vw;
   font-size: 36vw;
   text-align: center;
-  opacity: 0.22;
+  opacity: 0.42;
   pointer-events: none;
 }
 

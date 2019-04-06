@@ -107,11 +107,18 @@ function wireControls() {
     let wireCtrl = (el, evt, clbk, opts) => {
         document.getElementById(el).addEventListener(evt, clbk, opts)
     }
+    let restoreSlices = () => {
+        for (let slice of SLICES) {
+            localStorage.setItem(slice + "Slice", "")
+        }
+        location.reload();
+    }
     // then do the actual wiring
     wireCtrl('mode_list', 'change', (e) => applyFilter("mode", e.target.value), false)
     wireCtrl('filter_list', 'change', (e) => applyFilter(e.target.value), false)
     wireCtrl('clock_pauser', 'click', pauseClock, {once: true})
     wireCtrl('time_reverser', 'click', reverseTime)
+    wireCtrl('slice_restorer', 'click', restoreSlices, {once: true})
     return true;
 }
 
@@ -290,7 +297,7 @@ function wireHiders () {
 
         if (index > -1) {
 
-            SLICES.splice(index, 1);
+            // SLICES.splice(index, 1);
             sliceDiv.classList.add('hidden');
             localStorage[sliceDiv.id] = "false";
             setTimeout(function () {
