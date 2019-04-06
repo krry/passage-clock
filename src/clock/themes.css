@@ -1,56 +1,72 @@
 section.clock {
-	background-color: hsla(200, 40%, 16%, 0.3);
-	transition: all 500ms ease-in-out;
+  background-color: hsla(200, 40%, 16%, 0.3);
+  transition: all 500ms ease-in-out;
 }
 
-body.grayscale section.clock {
-	filter: grayscale(100%);
+.clock::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  right: 0;
+  bottom: 0;
+  background-color: hsla(0deg, 0%, 0%, 0.1);
 }
 
-body.sepia section.clock {
-	filter: sepia(100%);
+#clock.inverted {
+  filter: invert(100%);
 }
 
-body.invert section.clock {
-	filter: invert(100%);
+#clock.grayscale {
+  filter: grayscale(100%);
 }
 
-body.warmer section.clock {
-	filter: hue-rotate(120deg);
+#clock.sepiatone {
+  filter: sepia(100%);
 }
 
-body.greener section.clock {
-	filter: hue-rotate(-120deg);
+#clock.arctic {
+  filter: hue-rotate(0deg);
+}
+
+#clock.volcano {
+  filter: hue-rotate(120deg);
+}
+
+#clock.jungle {
+  filter: hue-rotate(-90deg);
 }
 
 .time-slice:nth-of-type(n) .time-band {
-	background-color: hsla(280, 32%, 16%, 0.8);
+  background-color: hsla(180, 60%, 44%, 0.8);
 }
 
 .time-slice:nth-of-type(n+1) .time-band {
-	background-color: hsla(270, 36%, 20%, 0.8);
+  background-color: hsla(190, 56%, 40%, 0.8);
 }
 
 .time-slice:nth-of-type(n+2) .time-band {
-	background-color: hsla(260, 40%, 24%, 0.8);
+  background-color: hsla(200, 52%, 36%, 0.8);
 }
 
 .time-slice:nth-of-type(n+3) .time-band {
-	background-color: hsla(250, 44%, 28%, 0.8);
+  background-color: hsla(210, 48%, 32%, 0.8);
 }
 
 .time-slice:nth-of-type(n+4) .time-band {
-	background-color: hsla(240, 48%, 32%, 0.8);
+  background-color: hsla(220, 44%, 28%, 0.8);
 }
 
 .time-slice:nth-of-type(n+5) .time-band {
-	background-color: hsla(230, 52%, 36%, 0.8);
+  background-color: hsla(230, 40%, 24%, 0.8);
 }
 
 .time-slice:nth-of-type(n+6) .time-band {
-	background-color: hsla(220, 56%, 40%, 0.8);
+  background-color: hsla(240, 36%, 20%, 0.8);
 }
 
 .time-slice:nth-of-type(n+7) .time-band {
-	background-color: hsla(210, 60%, 44%, 0.8);
+  background-color: hsla(250, 32%, 16%, 0.8);
 }

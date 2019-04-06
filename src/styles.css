@@ -11,12 +11,14 @@
 }
 
 html {
+
+
   font-family: system-ui;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
-	margin: 0;
-	font-family: "Inconsolata", "Fira Sans", monospace;
+  margin: 0;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
   background-color: black;
 }

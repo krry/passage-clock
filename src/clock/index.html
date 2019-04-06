@@ -1,30 +1,38 @@
-<!-- <video class="video-bkgd" poster="./bronto.jpg" id="bkgd_vid" playsinline autoplay muted loop>
-  <source src="./yosemite-bkgd.webm" type="video/webm">
-  <source src="./yosemite-bkgd.mp4" type="video/mp4">
-</video> -->
 <header>
   <a class="brand" href="#">PASSAGE</a>
-  <!-- <cite><a href="https://github.com/krry/passage-clock/" target="_blank">made with ᄽ῟｢❜ﭣ❜｣῏ᄿ by krry</a></cite> -->
 </header>
 <main id="slice_list" class="slices"></main>
 <script id="slice_template" type="x-template">
   <span class="time-unit"></span>
   <span class="current-time"></span>
+  <span class="innerspace"></span>
   <span class="percent-gone"></span>
   <div class="time-band"></div>
   <a class="hide-slice" href="#">x</a>
 </script>
+<div id="arrowoftime" class="floater arrowoftime"></div>
+<div id="millis" class="floater millis"></div>
 <footer>
   <div class="controls">
-    <!-- <button id="video_pauser">Pause video</button> -->
-    <button id="clock_pauser">Stop time</button>
+    <button id="reloader" onclick="location.reload()">New bkgd</button>
+    <button id="time_reverser" alt="Spin the arrow of time">Reverse</button>
+    <button id="clock_pauser" alt="Whoooooooa!">Stop time</button>
+    <select name="modes" id="mode_list">
+      <option value="bars" default>Bars</option>
+      <option value="rings">Rings</option>
+    </select>
     <select name="filters" id="filter_list">
-      <option value="sepia" default>Sepiatone</option>
-      <option value="">Arctic</option>
+      <option value="arctic" default>Arctic</option>
+      <option value="grayscale">Kodachrome</option>
+      <option value="sepiatone">Sepiatone</option>
       <option value="grayscale">Grayscale</option>
-      <option value="invert">Inverted</option>
-      <option value="warmer">Volcano</option>
-      <option value="greener">Jungle</option>
+      <option value="inverted">Negative</option>
+      <option value="volcano">Volcano</option>
+      <option value="jungle">Jungle</option>
     </select>
   </div>
+  <cite class="signature">
+    <div><a href="https://source.unsplash.com/collection/4593575">Photos via Unsplash API</a></div>
+    <div> ᄽ῟｢❜ﭣ❜｣῏ᄿ by&nbsp;<a href="https://github.com/krry/passage-clock/" target="_blank">krry</a> </div>
+  </cite>
 </footer>
