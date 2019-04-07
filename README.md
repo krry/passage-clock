@@ -7,7 +7,7 @@ a higgs boson, and an alarm clock radio.
 
 ## 📱 Usage
 
-Nav to [passage.krry.me](https://passage.krry.me) on a touch device, and add it to your home screen.
+Nav to [passage.krry.me](https://passage.krry.me) on a touch device, and add it to your home screen.\
 Passage is intended as a barebones experiment in PWAs (progressive web application).
 
 You'll figure it out.
@@ -41,7 +41,7 @@ Builds for prod and deploys the built files in `dist/` with `now`
 
 ## ⛓ Dependencies
 
-`yarn install` ought to cover you, except for deploying with now.
+`yarn install` ought to cover you, except for deploying with now.\
 You'll need that installed globally.
 
 ```
