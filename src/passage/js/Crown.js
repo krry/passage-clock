@@ -92,6 +92,7 @@ function restoreSlices () {
         localStorage.setItem(slice + "Slice", "");
     }
     Init.restart();
+
 };
 
 // for swapping out modes and filters on the component parent div

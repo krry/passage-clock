@@ -6,7 +6,8 @@
   "scripts": {
     "start": "npm run dev",
     "build": "webpack --config webpack.prod.js",
-    "dev": "webpack-dev-server --open --config webpack.dev.js"
+    "dev": "webpack-dev-server --open --config webpack.dev.js",
+    "release": "yarn build && now dist --name passage && pbpaste | now alias passage"
   },
   "keywords": [],
   "author": "",
