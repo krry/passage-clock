@@ -7,20 +7,36 @@ and an alarm clock radio.
 
 ## Installation
 
-To run it locally:
-
 ```
 git clone https://github.com/krry/passage-clock.git
 cd passage-clock && yarn add
+```
+
+## Development
+
+```
 yarn dev
 ```
 
-## Optional Dependencies
+Runs `webpack-dev-server` and pops your browser open to `localhost:8080`.
 
-A few packages that are helpful when installed globally:
+## Deployment
 
 ```
-yarn global add eslint webpack webpack-cli stylelint
+yarn deploy
+```
+
+Builds for prod and deploys the built files in `dist/` with `now`
+
+
+## Dependencies
+
+`yarn install` ought to cover you, except for deploying with now.
+You'll need that installed globally.
+There are a few packages that are helpful when installed globally:
+
+```
+yarn global add eslint webpack webpack-cli stylelint now
 ```
 
 ## Usage

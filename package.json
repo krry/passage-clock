@@ -11,6 +11,7 @@
     "start": "npm run dev",
     "build": "webpack --config webpack.prod.js",
     "dev": "webpack-dev-server --open --config webpack.dev.js",
+    "deploy": "yarn build && now dist",
     "release": "yarn build && now dist --name passage && pbpaste | now alias passage"
   },
   "devDependencies": {
@@ -28,8 +29,5 @@
     "webpack-dev-server": ">=3.1.11",
     "webpack-merge": "^4.1.1"
   },
-  "dependencies": {
-    "babel-runtime": "^6.26.0",
-    "lodash": "^4.17.5"
-  }
+  "dependencies": {}
 }
