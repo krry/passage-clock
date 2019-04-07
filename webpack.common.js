@@ -44,7 +44,8 @@ module.exports = {
         }),
         new CopyWebpackPlugin([
           { from: 'src/favicons', to: 'favicons/'},
-          'src/manifest.json'
+          'src/manifest.json',
+          'now.json'
         ]),
 	]
 }

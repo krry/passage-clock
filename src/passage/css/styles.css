@@ -1,3 +1,4 @@
+/* TODO: split CSS into modules */
 :root {
   --text-light: hsla(0, 100%, 100%, 1);
   --border-color: hsla(0, 0%, 0%, 0.5);
@@ -11,7 +12,7 @@
   z-index: 2;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 7.5vh auto 10vh;
+  grid-template-rows: 7.5vh auto 7.5vh;
   grid-template-areas:
     "header"
     "main"
@@ -26,16 +27,38 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
-.clock.askew {
-  transform: rotate3d(0, 1, 1, 15deg);
+@media screen and (max-width: 350px) {
+  .clock .signature {
+    display: none;
+  }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 450px) and (min-height: 450px) {
   .clock {
     font-size: 80%;
+    grid-template-rows: 4em auto 8em;
+  }
+
+  .clock footer {
+    padding: 0;
+  }
+
+  .clock .controls {
+    margin-bottom: -1em;
+  }
+
+  .clock .signature {
+    flex-grow: 1;
+    justify-content: space-around;
+  }
+}
+
+@media screen and (max-height: 450px) and (min-width: 450px) {
+  .clock {
+    grid-template-rows: 4em auto 4em;
   }
 }
 
@@ -89,10 +112,6 @@ header a.brand {
 }
 
 @media screen and (max-width: 400px) {
-  .clock {
-    grid-template-rows: 5em auto 6em;
-  }
-
   .time-slice {
     grid-template-columns: 6em 6em auto 6em 3em;
   }
@@ -202,7 +221,7 @@ footer {
 
 cite.signature {
   /* doesn't grow but shrinks */
-  flex: 1 1 48ch;
+  flex: 0 1 28ch;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
@@ -215,7 +234,7 @@ cite.signature {
 }
 
 .controls {
-  flex: 2 0 auto;
+  flex: 3 1 auto;
   display: flex;
   flex-flow: row wrap;
   align-items: center;

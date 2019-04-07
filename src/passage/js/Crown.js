@@ -1,4 +1,5 @@
 import Data from './Data';
+import Face from './Face';
 import Init from './index';
 import Clock from './Clock';
 
@@ -49,16 +50,20 @@ function checkArrow() {
         localStorage.setItem("arrow", arrow);
     } else if (arrow === "right") {
         arrowEl.classList.add('reversed');
+        return false;
     } else if (arrow === 'left') {
-        arrowEl.classList.remove('reversed')
+        arrowEl.classList.remove('reversed');
+        return true;
     }
 }
 
 function checkFlux() {
     if (localStorage.getItem('fluxState') === "flowing") {
-        clockPauser.textContent = "Be still"
+        clockPauser.textContent = "Be still";
+        return true;
     } else {
-        clockPauser.textContent = "Flow on"
+        clockPauser.textContent = "Flow on";
+        return false;
     }
 }
 
@@ -79,6 +84,7 @@ function reverseTime () {
     arrow = arrow === "right" ? "left" : "right";
     localStorage.setItem("arrow", arrow);
     checkArrow();
+    if (!checkFlux()) Face.update()
 }
 
 function restoreSlices () {

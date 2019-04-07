@@ -79,14 +79,15 @@ function restartClock() {
     const sliceList = document.getElementById("slice_list");
 
     // first, stop the clock
-    // clearInterval(getClock());
+    Clock.stop();
 
     // remove the slices one by one
-    // this is WAY more performant than setting innerHTML
     while (sliceList.firstChild) {
+        // this is WAY more performant than setting innerHTML
         sliceList.removeChild(sliceList.firstChild);
     }
 
+    // start back to tickin
     init()
 }
 
