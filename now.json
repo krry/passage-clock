@@ -1,6 +1,7 @@
 {
   "version": 2,
   "name": "passage",
+  "alias": "passage.krry.me",
   "builds": [
     {"src": "package.json", "use": "@now/static-build"}
   ],
