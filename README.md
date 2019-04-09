@@ -57,7 +57,7 @@ yarn global add now
 ## 🙏Gratitude
 
 - Inspired by Justice whose preferred clock displays the percentage of the day now past
-- Drew conceptually from [@robertmermet's](http://robertmermet.com/) [Percent Clock](https://github.com/robertmermet/percentclock/)
+- Drawn conceptually from [@robertmermet's](http://robertmermet.com/) [Percent Clock](https://github.com/robertmermet/percentclock/)
 - Thanks to [Unsplash](https://unsplash.com/developers) and the photogs for these superb photos
 
 ## 😅 TODO
@@ -68,6 +68,7 @@ yarn global add now
 - [ ] add atmospheric effects and/or particle.js
 - [ ] make the arrow dance and sway
 - [ ] add more atmanautic art
+- [ ] integrate next.js?
 - [x] let users choose a color scheme
 - [ ] port to New Tab experience for Chrome?
 - [x] allow users to remove time slices
