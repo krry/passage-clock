@@ -2,6 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const WorkboxPlugin = require('workbox-webpack-plugin')
 
 module.exports = {
     entry: {
@@ -43,9 +44,12 @@ module.exports = {
             manifest: 'src/manifest.json',
         }),
         new CopyWebpackPlugin([
-          { from: 'src/favicons', to: 'favicons/'},
-          'src/manifest.json',
-          'now.json'
+            { from: 'src/favicons', to: 'favicons/'},
+            'src/manifest.json',
+            'now.json'
         ]),
+        new WorkboxPlugin.GenerateSW({
+            exclude: [/.DS_Store/]
+        })
 	]
 }

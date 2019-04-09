@@ -1,6 +1,5 @@
 import './styles.css';            // styles for the consumer
 import './manifest.json';
-import './favicons/favicon.ico';  // probably not necessary
 
 import Passage from './passage/js';
 import PsgTemplate from './passage/index.html';
