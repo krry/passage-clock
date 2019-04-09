@@ -36,7 +36,7 @@ section.clock {
 }
 
 #clock.sepiatone {
-  filter: sepia(1) brightness(0.9) contrast(1.1) saturate(1.1);
+  filter: sepia(0.75) brightness(1.1) contrast(1.1) saturate(1.1);
 }
 
 #clock.volcano {

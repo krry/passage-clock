@@ -6,6 +6,7 @@ var position,
   moment,
   millis,
   flipped,
+  emt,
   currentTimes = {},
   percentGones = {},
   timeBands = {};
@@ -14,9 +15,11 @@ const SLICES = Data.get("slices");
 
 function flipBands(dir) {
   flipped = dir === "right";
+  updateFace();
 }
 
-function wireFace(emt) {
+function wireFace(emitter) {
+  emt = emitter;
   for (let slice of SLICES) {
     if (slice === "ms") {
       millis = document.getElementById("millis");
