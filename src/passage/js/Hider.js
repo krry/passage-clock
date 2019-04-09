@@ -11,6 +11,7 @@ function wireHiders() {
     }
 
     for (let i = 0; i < hiders.length; i++) {
+        hiders[i].setAttribute('name', SLICES[i]);
         hiders[i].addEventListener("click", removeSlice, { once: true });
     }
     // return false;
@@ -23,7 +24,6 @@ function removeSlice (arg) {
     const sliceDiv = document.getElementById(sliceName + "Slice");
 
     if (index > -1) {
-        // SLICES.splice(index, 1);
         sliceDiv.classList.add("hidden");
         localStorage[sliceDiv.id] = "false";
         setTimeout(function() {

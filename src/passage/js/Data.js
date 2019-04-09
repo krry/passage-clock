@@ -1,4 +1,5 @@
 const data = {
+    debug: true,
     slices: [
         "ms",
         "second",

@@ -1,65 +1,79 @@
-import Data from './Data';
-import Time from './Time';
-import Crown from './Crown';
+import Data from "./Data";
+import Time from "./TimeAbs";
+import Emitter from './Emitter';
 
-var position,
-    moment;
+var position, moment, millis, flipped,
+    currentTimes = {},
+    percentGones = {},
+    timeBands = {};
 
-const SLICES = Data.get('slices');
+const emt = new Emitter();
+const SLICES = Data.get("slices");
+
+function wireFace() {
+  data_dump = document.getElementById("data_dump");
+  millis = document.getElementById("millis");
+
+  for (let slice of SLICES) {
+    currentTimes[slice] = document.querySelector(
+      "#" + slice + "Slice > .current-time"
+    );
+    percentGones[slice] = document.querySelector(
+      "#" + slice + "Slice > .percent-gone"
+    );
+    timeBands[slice] = document.querySelector(
+      "#" + slice + "Slice > .time-band"
+    );
+  }
+  emt.on('arrow', flipBands);
+  emt.on('debug', deBug);
+}
+
+const deBug = (bugged) => debug = bugged;
+const flipBands = (dir) => flipped = (dir === 'right');
 
 // sends parsed time to divs and css
 // gets called every TICK ms
 
 function updateFace() {
-    moment = Time.tick();
+  moment = Time.tick();
 
-    // parses out the pc object slice by slice
-    for (let slice of SLICES) {
-
+  // parses out the pc object slice by slice
+  for (let slice of SLICES) {
     if (slice === "ms") {
-        document.getElementById("millis").textContent = display(slice);
-        continue;
+      millis.textContent = display(slice);
+      continue;
     }
 
-    document.querySelector(
-        "#" + slice + "Slice > .current-time"
-    ).textContent = display(slice);
-
-    document.querySelector(
-        "#" + slice + "Slice > .percent-gone"
-    ).textContent = percent(slice);
-
-    document.querySelector(
-        "#" + slice + "Slice > .time-band"
-    ).style.transform = "translateX(" + bandShift(slice) + ")";
-
+    currentTimes[slice].textContent = display(slice);
+    percentGones[slice].textContent = percent(slice);
+    timeBands[slice].style.transform = "translateX(" + bandShift(slice) + ")";
   }
-  // return false;
+  if (debug) {
+    console.dir(moment);
+  }
 }
 
 // formats the passage ratios into percentages
 function percent(slice) {
-    return (moment.passage[slice] * 100).toFixed(2) + "%";
+  return (moment.psg[slice] * 100).toFixed(2) + "%";
 }
 
 // returns the clock readouts from the sliceTime object
 function display(slice) {
-    return moment.display[slice];
+  return moment.dsp[slice];
 }
 
 // determines how much to move the passage bars
 // returns a negative percentage when time goes backward
 function bandShift(slice) {
+  position = (1 - moment.psg[slice]) * 100 * 2;
+  if (flipped) position *= -1;
 
-    position = 100 - moment.passage[slice] * 100 * 2;
-
-    if (Crown.arrow() === "right") {
-        position *= -1;
-    }
-
-    return position.toString() + "%";
+  return position.toString() + "%";
 }
 
 export default {
-    update: updateFace
-}
+  wire: wireFace,
+  update: updateFace
+};

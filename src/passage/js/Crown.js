@@ -2,6 +2,7 @@ import Data from './Data';
 import Face from './Face';
 import Init from './index';
 import Clock from './Clock';
+import Emitter from './Emitter';
 
 var activeFilter,
     arrowEl,
@@ -9,6 +10,8 @@ var activeFilter,
     filterListEl,
     clockPauser,
     arrow;
+
+let emt = new Emitter();
 
 const SLICES = Data.get('slices');
 
@@ -43,7 +46,9 @@ function wireControls() {
     // return false;
 }
 
-function checkArrow() {
+emt.on('arrow', checkArrow);
+
+function checkArrow(dir) {
     // if there isn't a arrow saved in the browser, default to left
     if (arrow === null) {
         arrow = "left";
@@ -55,10 +60,13 @@ function checkArrow() {
         arrowEl.classList.remove('reversed');
         return true;
     }
+    if (localStorage.getItem('fluxState') === 'still') Face.update()
 }
 
-function checkFlux() {
-    if (localStorage.getItem('fluxState') === "flowing") {
+emt.on('flux', checkFlux);
+
+function checkFlux(state) {
+    if (state !== "still") {
         clockPauser.textContent = "Be still";
         return true;
     } else {
@@ -68,28 +76,27 @@ function checkFlux() {
 }
 
 function toggleClock() {
-    if (localStorage.getItem('fluxState') === "flowing") {
+    if (localStorage.getItem('fluxState') === 'flowing') {
         Clock.stop()
-        localStorage.setItem('fluxState', 'still')
-        checkFlux();
+        localStorage.setItem('fluxState', 'still');
+        emt.emit('flux', 'still');
     } else {
         Clock.start();
         localStorage.setItem('fluxState', 'flowing');
-        checkFlux();
+        emt.emit('flux', 'flowing');
     } // return false;
 }
 
 // when the reverse button is hit, flip the bit in localStorage
 function reverseTime () {
-    arrow = arrow === "right" ? "left" : "right";
+    arrow = arrow === 'right' ? 'left' : 'right';
     localStorage.setItem("arrow", arrow);
-    checkArrow();
-    if (!checkFlux()) Face.update()
+    emt.emit('arrow', arrow);
 }
 
 function restoreSlices () {
     for (let slice of SLICES) {
-        localStorage.setItem(slice + "Slice", "");
+        localStorage.setItem(slice + 'Slice', '');
     }
     Init.restart();
 
@@ -97,11 +104,12 @@ function restoreSlices () {
 
 // for swapping out modes and filters on the component parent div
 function applyFilter(bodyClass) {
-    clockEl = document.getElementById("clock");
+    clockEl = document.getElementById('clock');
     clockEl.classList.remove(activeFilter);
     clockEl.classList.add(bodyClass);
     activeFilter = bodyClass;
-    return localStorage.setItem("filter", bodyClass);
+    emt.emit('filter', activeFilter);
+    return localStorage.setItem('filter', bodyClass);
 }
 
 var wired = {};
@@ -115,11 +123,7 @@ function wireCtrl (el, evt, clbk, opts) {
     return true;
 };
 
-function getArrow() {
-    return arrow;
-}
-
 export default {
-    arrow: getArrow,
+    reverse: checkArrow,
     install: wireControls
 }

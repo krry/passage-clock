@@ -1,5 +1,9 @@
 <header>
-  <a class="brand" href="#" title="Sounds like massage">PASSAGE</a>
+  <h1 class="brand" title="Sounds like massage">PASSAGE</h1>
+  <div id="app_asker" class="asker hidden">
+    <button id="app_adder" class="app-adder">Add as app</button>
+    <button id="app_noper" class="app-adder">Nope</button>
+  </div>
 </header>
 <main id="slice_list" class="slices"></main>
 <script id="slice_template" type="x-template">
@@ -8,36 +12,38 @@
   <span class="innerspace"></span>
   <span class="percent-gone"></span>
   <div class="time-band"></div>
-  <a class="hide-slice" href="#">x</a>
+  <a class="hide-slice" href="#"></a>
 </script>
 <div id="arrow" class="floater arrow"></div>
 <div id="millis" class="floater millis"></div>
 <footer>
-  <div class="controls">
-    <button id="reloader" onclick="location.reload()" title="Reloads page">New bkgd</button>
-    <button id="slice_restorer" title="Where have the years gone?">Restore</button>
-    <button id="time_reverser" title="Spin the arrow of time">Reverse</button>
-    <button id="clock_pauser" title="Whoooooooa!">Be still</button>
-    <select name="modes" id="mode_list">
-      <option value="bars" default>Bars</option>
-      <option value="rings">Rings</option>
-    </select>
-    <select name="filters" id="filter_list">
+  <div id="photo_credit" class="humble"><a
+       href="https://unsplash.com/collections/4593575/passage"
+       title="https://source.unsplash.com/collection/4593575">📷 via Unsplash 💦</a></div>
+  <button id="reloader" aria-label"new photo" onclick="location.reload()"
+    class="hidden">New bkgd</button>
+  <button id="slice_restorer" aria-label="restore slices" title="Where have
+  the years gone?">Restore slices</button>
+  <button id="time_reverser" aria-label="reverse time" title="Spin the arrow
+  of time">Reverse</button>
+  <button id="clock_pauser" aria-label="toggle time" title="Whoooooooa!">Be
+    still</button>
+  <select id="mode_list" class="hidden">
+    <option value="bars" default>Bars</option>
+    <option value="rings">Rings</option>
+  </select>
+  <label for="filter_list">Filters
+    <select name="filters" aria-label="apply filter" id="filter_list">
       <option value="kodachrome">Koda</option>
       <option value="sepiatone">Cleve</option>
       <option value="grayscale">Dorian</option>
-      <option value="negative">Negativo</option>
+      <option value="negative">sraM</option>
       <option value="volcano">lovevol</option>
       <option value="xray">Ɣamma</option>
       <option value="arctic">Fris</option>
       <option value="jungle">Jung</option>
       <option value="ghost">Geist</option>
     </select>
-  </div>
-  <cite class="signature">
-    <div><a
-      href="https://unsplash.com/collections/4593575/passage"
-      title="https://source.unsplash.com/collection/4593575">📷💦</a></div>
-    <div><a href="https://github.com/krry/passage-clock/" target="_blank">ᄽ῟｢❜ﭣ❜｣῏ᄿ</a> </div>
-  </cite>
+  </label>
+  <div id="phone_home"><a href="https://github.com/krry/passage-clock/" target="_blank" rel="noopener">ᄽ῟｢❜ﭣ❜｣῏ᄿ</a></div>
 </footer>

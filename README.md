@@ -61,13 +61,15 @@ yarn global add now
 
 ## TODO
 
-- [x] let users choose a color scheme
-- [x] allow users to remove time slices
-- [x] enable user to restore removed slices
-- [x] turn back time
-- [x] alias to krry.me with now.sh
+- [ ] refactor modules into ES6 Classes where appropriate
+- [ ] involve babel-loader in the build to be browser-friendly
 - [ ] allow time origin adjustment, i.e. time from now, time till then
 - [ ] add atmospheric effects and/or particle.js
 - [ ] make the arrow dance and sway
 - [ ] add more atmanautic art
+- [x] let users choose a color scheme
 - [ ] port to New Tab experience for Chrome?
+- [x] allow users to remove time slices
+- [x] enable user to restore removed slices
+- [x] turn back time
+- [x] alias to krry.me with now.sh
