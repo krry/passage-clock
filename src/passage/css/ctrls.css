@@ -1,0 +1,36 @@
+button,
+select {
+  background: transparent;
+  color: var(--text-light);
+  border-style: solid;
+  border-radius: 4px;
+  font-family: inherit;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+button {
+  margin: 0.25em;
+  line-height: 1;
+  display: inline-flex;
+}
+
+button,
+label {
+  height: 3em;
+}
+
+label {
+  font-size: 62.5%;
+}
+
+select {
+  -webkit-appearance: menulist-button;
+  -moz-appearance: menulist-button;
+  appearance: menulist-button;
+  display: block;
+}
+
+.hidden {
+  display: none;
+}

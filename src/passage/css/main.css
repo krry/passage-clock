@@ -1,0 +1,16 @@
+/* TODO: split CSS into modules */
+:root {
+  --text-light: hsla(0, 100%, 100%, 1);
+  --border-color: hsla(0, 0%, 0%, 0.5);
+  --grid-gap: 2vw;
+}
+
+@import "./animation.css";
+@import "./header.css";
+@import "./footer.css";
+@import "./clock.css";
+@import "./timeslice.css";
+@import "./ctrls.css";
+@import "./floaters.css";
+@import "./themes.css";
+@import "./devmo.css";

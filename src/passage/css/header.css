@@ -1,0 +1,54 @@
+header {
+  position: relative;
+  display: flex;
+  grid-area: header;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 2rem 1rem;
+  background-image:
+    linear-gradient(
+      to top,
+      transparent,
+      hsla(0, 0%, 0%, 0.25) 35%,
+      hsla(0, 0%, 0%, 0.375) 75%
+    );
+}
+
+header a {
+  color: var(--text-light);
+  text-decoration: none;
+}
+
+.brand {
+  font-size: 2em;
+  font-weight: 700;
+  letter-spacing: 6px;
+}
+
+@media screen and (min-width: 350px) {
+  .brand {
+    letter-spacing: 12px;
+  }
+}
+
+.asker {
+  display: flex;
+  transform: scale(1);
+  opacity: 1;
+  transition: 1000ms;
+}
+
+.asker.hidden {
+  display: none;
+  transform: scale(0.01);
+  opacity: 0;
+}
+
+#app_adder {
+  animation: 3s cubic-bezier(0.645, 0.045, 0.355, 1) infinite pulse;
+  box-shadow: 0 0 0 0 hsla(332, 76%, 75%, 0.5);
+}
+
+#app_noper:hover {
+  background-color: hsla(10, 85%, 60%, 1);
+}

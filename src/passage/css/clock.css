@@ -1,0 +1,37 @@
+.clock {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 5vh auto 5vh;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+  align-content: stretch;
+  justify-content: stretch;
+  color: var(--text-light);
+  background: #131313 no-repeat center center fixed;
+  background-image: url("https://source.unsplash.com/collection/4593575");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  overflow: hidden;
+  font-size: 80%;
+}
+
+@media screen and (min-height: 450px) {
+  .clock {
+    font-size: 100%;
+    grid-template-rows: 7.5vh auto 14vh;
+  }
+}
+
+@media screen and (min-width: 540px) {
+  .clock {
+    font-size: 100%;
+    grid-template-rows: 7.5vh auto 7.5vh;
+  }
+}

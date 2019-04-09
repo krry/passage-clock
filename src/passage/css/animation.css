@@ -1,0 +1,52 @@
+.pleasant-guest.removing {
+  /* shrinks up before disappearing */
+  /* so siblings can slide into their new positions */
+  transform: scale(0.1);
+  transition: transform 500ms ease-in;
+}
+
+.pleasant-guest.adding {
+  transform: scale(1);
+  transition: transform 500ms ease-in;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: hsla(332, 76%, 75%, 0);
+    transform: scale(0.9);
+  }
+
+  10% {
+    /* background-color: hsla(332, 96%, 75%, 0.7); */
+    background-color: hsla(332, 86%, 75%, 1);
+    box-shadow: 0 0 0 0.15em hsla(332, 86%, 75%, 0.5);
+  }
+
+  15% {
+    transform: scale(1);
+  }
+
+  30% {
+    background-color: hsla(332, 96%, 75%, 1);
+    box-shadow: 0 0 0 100vh hsla(332, 96%, 75%, 0);
+  }
+
+  100% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 hsla(332, 86%, 75%, 0);
+  }
+}
+
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}

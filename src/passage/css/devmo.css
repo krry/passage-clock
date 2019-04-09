@@ -1,0 +1,31 @@
+.devmo {
+  position: absolute;
+  margin: auto;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  width: 40%;
+  background: #131313;
+  color: #f6f6f6;
+}
+
+pre {
+  background: #333;
+  white-space: pre;
+  word-wrap: break-word;
+  overflow: auto;
+}
+
+pre.code {
+  position: relative;
+  margin: 0;
+}
+
+pre.code code {
+  font-family: "IBM Plex Mono", monospace;
+  display: block;
+  padding: 1em;
+  overflow-x: auto;
+  font-size: 10px;
+  color: #ddd;
+}

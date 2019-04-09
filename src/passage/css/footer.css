@@ -1,0 +1,33 @@
+footer {
+  position: relative;
+  grid-area: footer;
+  justify-content: space-evenly;
+  align-items: center;
+  display: flex;
+  /* sets footer items in a row */
+  flex-flow: row wrap;
+  /* wraps them when it gets crowded */
+  background-image:
+    linear-gradient(
+      to bottom,
+      transparent,
+      hsla(0, 0%, 0%, 0.25) 25%,
+      hsla(0, 0%, 0%, 0.5) 50%
+    );
+}
+
+@media screen and (min-width: 450px) {
+  footer {
+    padding: 0 1rem;
+  }
+}
+
+footer a {
+  color: var(--text-light);
+  text-decoration: none;
+}
+
+.humble {
+  font-weight: lighter;
+  font-size: 80%;
+}

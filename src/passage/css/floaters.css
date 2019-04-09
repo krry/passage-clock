@@ -1,0 +1,40 @@
+.floater {
+  position: fixed;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  font-size: calc((32vw + 32vh) / 2);
+  text-align: center;
+  opacity: 0.42;
+  pointer-events: none;
+}
+
+.millis {
+  line-height: 70vh;
+  font-family: "IBM Plex Mono", Inconsolata, monospace;
+}
+
+.arrow {
+  line-height: 140vh;
+  bottom: 0;
+  z-index: 5;
+  transition: 500ms ease-out;
+  transform-origin: center 75%;
+}
+
+.arrow::after {
+  content: "⟿";
+}
+
+.arrow.reversed {
+  transform: rotateX(360deg) rotateZ(180deg);
+}
+
+.arrow.spun {
+  transform: rotateY(180deg);
+}
+
+.arrow.flipped {
+  transform: rotateZ(180deg);
+}
