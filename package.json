@@ -12,7 +12,8 @@
     "build": "webpack --config webpack.prod.js",
     "dev": "webpack-dev-server --open --config webpack.dev.js",
     "deploy": "yarn build && now --public dist",
-    "release": "yarn build && now --public dist --name passage && pbpaste | now alias passage.krry.me"
+    "release": "yarn build && now --public dist --name passage && pbpaste | now alias passage.krry.me",
+    "now-build": "yarn build"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^0.1.18",
