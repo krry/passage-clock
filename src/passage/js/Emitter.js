@@ -14,7 +14,6 @@ export default class Emitter {
   }
 
   on(eventName, fn) {
-    console.log('receiving on', eventName);
     this._getEventListByName(eventName).add(fn);
   }
 
@@ -29,7 +28,7 @@ export default class Emitter {
   }
 
   emit(eventName, ...args) {
-    console.log('emitting', eventName);
+    console.log('emitting', eventName, args);
     this._getEventListByName(eventName).forEach(
       function(fn) {
         fn.apply(this, args);

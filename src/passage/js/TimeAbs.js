@@ -1,10 +1,8 @@
 import Data from "./Data";
-import Emitter from "./Emitter";
 import Calendar from "./Calendar";
 
 const DAYS = Data.get("days");
 const MONTHS = Data.get("months");
-const emt = new Emitter();
 
 // splits time into units and relates those units to each other
 // gets called by updateTime every TICK_DELAY milliseconds
@@ -62,15 +60,6 @@ function tickTime() {
     }
     soFar = utt[prop]; // keep the value one step behind key
   }
-
-  // const checkDirection = (dir) => {
-  //   if (dir === 'right') {
-  //     for (var prop in psg) {
-  //       psg[prop] = -1 * psg[prop];
-  //     }
-  //   }
-  // }
-  // emt.on('arrow', checkDirection);
 
   // tidies up the nwt clock readouts for display
   let dsp = {};

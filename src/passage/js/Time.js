@@ -106,8 +106,9 @@ function tickTime() {
     year: pc.current.year
   };
 
+  console.dir(pc);
   // returns the ratios and the clock readouts
-  return { passage: pc.passage, display: pc.display };
+  return { psg: pc.passage, dsp: pc.display };
 }
 
 export default {

@@ -1,20 +1,27 @@
 import Data from "./Data";
-import Time from "./TimeAbs";
-import Emitter from './Emitter';
+// import Time from "./TimeAbs";
+import Time from "./Time";
 
-var position, moment, millis, flipped,
-    currentTimes = {},
-    percentGones = {},
-    timeBands = {};
+var position,
+  moment,
+  millis,
+  flipped,
+  currentTimes = {},
+  percentGones = {},
+  timeBands = {};
 
-const emt = new Emitter();
 const SLICES = Data.get("slices");
 
-function wireFace() {
-  data_dump = document.getElementById("data_dump");
-  millis = document.getElementById("millis");
+function flipBands(dir) {
+  flipped = dir === "right";
+}
 
+function wireFace(emt) {
   for (let slice of SLICES) {
+    if (slice === "ms") {
+      millis = document.getElementById("millis");
+      continue;
+    }
     currentTimes[slice] = document.querySelector(
       "#" + slice + "Slice > .current-time"
     );
@@ -25,12 +32,8 @@ function wireFace() {
       "#" + slice + "Slice > .time-band"
     );
   }
-  emt.on('arrow', flipBands);
-  emt.on('debug', deBug);
+  emt.on("arrow", flipBands);
 }
-
-const deBug = (bugged) => debug = bugged;
-const flipBands = (dir) => flipped = (dir === 'right');
 
 // sends parsed time to divs and css
 // gets called every TICK ms
@@ -44,13 +47,9 @@ function updateFace() {
       millis.textContent = display(slice);
       continue;
     }
-
     currentTimes[slice].textContent = display(slice);
     percentGones[slice].textContent = percent(slice);
     timeBands[slice].style.transform = "translateX(" + bandShift(slice) + ")";
-  }
-  if (debug) {
-    console.dir(moment);
   }
 }
 
@@ -65,11 +64,10 @@ function display(slice) {
 }
 
 // determines how much to move the passage bars
-// returns a negative percentage when time goes backward
 function bandShift(slice) {
-  position = (1 - moment.psg[slice]) * 100 * 2;
+  position = 100 - 200 * moment.psg[slice];
+  // reverses polarity when time goes backward
   if (flipped) position *= -1;
-
   return position.toString() + "%";
 }
 

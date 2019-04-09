@@ -1,11 +1,13 @@
 import "../css/main.css";
-
 import Data from "./Data";
 import Face from "./Face";
 import Hider from "./Hider";
 import Clock from "./Clock";
 import Crown from "./Crown";
 import Apper from "./Apper";
+import Emitter from "./Emitter";
+
+let emt = new Emitter();
 
 const TICK_DELAY = 32; // every few ms
 const SLICES = Data.get("slices");
@@ -16,10 +18,10 @@ function init(delay = TICK_DELAY) {
   generateSlices();
 
   // store all the els that get updates every TICK_DELAY
-  Face.wire();
+  Face.wire(emt);
 
   // the crown controls the watch
-  Crown.install();
+  Crown.wire(emt);
 
   // with slices in the DOM, plot their demise
   Hider.wire();
@@ -36,7 +38,6 @@ function init(delay = TICK_DELAY) {
 
 // populates DOM with slices and spaces them out vertically
 function generateSlices() {
-
   const sliceList = document.getElementById("slice_list");
   const sliceTemplate = document.getElementById("slice_template").textContent;
   // const sliceTemplate = document.getElementById("slice_template").innerHTML;
