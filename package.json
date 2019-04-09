@@ -10,6 +10,7 @@
   "scripts": {
     "start": "npm run dev",
     "build": "webpack --config webpack.prod.js",
+    "now-build": "webpack --config webpack.prod.js",
     "dev": "webpack-dev-server --open --config webpack.dev.js",
     "deploy": "yarn build && now --public dist",
     "release": "yarn build && now --public dist --name passage && pbpaste | now alias passage.krry.me"
