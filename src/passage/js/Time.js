@@ -1,8 +1,9 @@
-import Data from './Data';
+import Data from "./Data";
 
-const DAYS = Data.get('days');
-const MONTHS = Data.get('months');
-const MONTH_DAYS = Data.get('monthDays');
+const DAYS = Data.get("days");
+const MONTHS = Data.get("months");
+const MONTH_DAYS = Data.get("monthDays");
+let debug = false;
 
 // splits time into units and relates those units to each other
 // gets called by updateTime every TICK_DELAY milliseconds
@@ -106,11 +107,14 @@ function tickTime() {
     year: pc.current.year
   };
 
-  console.dir(pc);
+  if (debug) {
+    console.dir(pc);
+  }
+
   // returns the ratios and the clock readouts
   return { psg: pc.passage, dsp: pc.display };
 }
 
 export default {
-    tick: tickTime
-}
+  tick: tickTime
+};

@@ -4,6 +4,8 @@ import Calendar from "./Calendar";
 const DAYS = Data.get("days");
 const MONTHS = Data.get("months");
 
+let debug = false;
+
 // splits time into units and relates those units to each other
 // gets called by updateTime every TICK_DELAY milliseconds
 function tickTime() {
@@ -80,6 +82,10 @@ function tickTime() {
   // add time names
   dsp["dayOfWeek"] = DAYS[nwt.day];
   dsp["monthName"] = MONTHS[nwt.month];
+
+  if (debug) {
+    console.dir(pc);
+  }
 
   // returns the ratios and the clock readouts
   return {

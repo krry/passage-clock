@@ -1,7 +1,9 @@
 var deferredPrompt,
-    asker;
+  asker,
+  emitter;
 
-const listenToPrompt = () => {
+const listenToPrompt = (emt) => {
+    emitter = emt;
     asker = document.getElementById('app_asker');
     window.addEventListener('beforeinstallprompt', (e) => {
         // Prevent Chrome 67 and earlier from automatically showing the prompt
@@ -25,7 +27,7 @@ const showAppAsker = () => {
 const wireAppNoper = () => {
     const appNoper = document.getElementById('app_noper');
     appNoper.addEventListener('click', () => {
-        nixAsker();
+      nixAsker();
     });
 }
 
@@ -38,15 +40,14 @@ const addToHomeScreen = () => {
     // hide our user interface that shows our A2HS button
     nixAsker();
     // Show the prompt
-    console.log('waiting for a deferred prompt reply');
     deferredPrompt.prompt();
     // Wait for the user to respond to the prompt
     deferredPrompt.userChoice
         .then((choiceResult) => {
         if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the A2HS prompt');
+            // console.log('User accepted the A2HS prompt');
         } else {
-            console.log('User dismissed the A2HS prompt');
+            // console.log('User dismissed the A2HS prompt');
         }
         deferredPrompt = null;
     });

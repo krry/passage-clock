@@ -1,25 +1,19 @@
 import Data from "./Data";
-// import Time from "./TimeAbs";
-import Time from "./Time";
+import Time from "./TimeAbs";
 
 var position,
   moment,
   millis,
   flipped,
-  emt,
+  emitter,
   currentTimes = {},
   percentGones = {},
   timeBands = {};
 
 const SLICES = Data.get("slices");
 
-function flipBands(dir) {
-  flipped = dir === "right";
-  updateFace();
-}
-
-function wireFace(emitter) {
-  emt = emitter;
+function wireFace(emt) {
+  emitter = emt;
   for (let slice of SLICES) {
     if (slice === "ms") {
       millis = document.getElementById("millis");
@@ -35,7 +29,12 @@ function wireFace(emitter) {
       "#" + slice + "Slice > .time-band"
     );
   }
-  emt.on("arrow", flipBands);
+  emitter.on("arrow", flipBands);
+}
+
+function flipBands(dir) {
+  flipped = dir === "right";
+  updateFace();
 }
 
 // sends parsed time to divs and css

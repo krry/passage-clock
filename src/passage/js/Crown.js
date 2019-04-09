@@ -3,9 +3,43 @@ import Face from "./Face";
 import Init from "./index";
 import Clock from "./Clock";
 
-var activeFilter, arrowEl, clockEl, clockPauser, arrow, emt, wired = {}, filterListEl;
+var activeFilter, arrowEl, clockEl, clockPauser, arrow, emitter, wired = {}, filterListEl;
 
 const SLICES = Data.get("slices");
+
+// wires display controls at footer to their functions
+function wireCrown(emt) {
+  // make the emitter available to the helper functions herein
+  emitter = emt;
+
+  // cache the ctrl elements
+  arrowEl = document.getElementById("arrow");
+  filterListEl = document.getElementById("filter_list");
+  clockPauser = document.getElementById("clock_pauser");
+
+  activeFilter = localStorage.getItem('filter');
+  // if there is a filter preference saved, use it
+  if (activeFilter !== null) {
+    filterListEl.value = activeFilter;
+    applyFilter(activeFilter);
+  }
+
+  // add listeners on event channels
+  emitter.on("arrow", checkArrow);
+  emitter.on("flux", checkFlux);
+
+
+  // then do the actual wiring
+  wireCtrl("clock_pauser", "click", toggleClock);
+  wireCtrl("time_reverser", "click", reverseTime);
+  wireCtrl("slice_restorer", "click", restoreSlices);
+  wireCtrl("filter_list", "change", e => applyFilter(e.target.value), false);
+  // wireCtrl("mode_list", "change", e => applyFilter(e.target.value), false);
+
+  // initiate channels with locally stored prefs
+  emitter.emit("arrow", localStorage.getItem("arrowDir"));
+  emitter.emit("flux", localStorage.getItem("fluxState"));
+}
 
 // a DRYer way to wire the buttons
 function wireCtrl(el, evt, clbk, opts) {
@@ -23,42 +57,8 @@ function applyFilter(bodyClass) {
   clockEl.classList.remove(activeFilter);
   clockEl.classList.add(bodyClass);
   activeFilter = bodyClass;
-  emt.emit("filter", activeFilter);
+  emitter.emit("filter", activeFilter);
   return localStorage.setItem("filter", bodyClass);
-}
-
-// wires display controls at footer to their functions
-function wireCrown(emitter) {
-  // make the emitter available to the helper functions herein
-  emt = emitter;
-
-  // cache the ctrl elements
-  arrowEl = document.getElementById("arrow");
-  filterListEl = document.getElementById("filter_list");
-  clockPauser = document.getElementById("clock_pauser");
-
-  activeFilter = localStorage.getItem('filter');
-  // if there is a filter preference saved, use it
-  if (activeFilter !== null) {
-    filterListEl.value = activeFilter;
-    applyFilter(activeFilter);
-  }
-
-  // add listeners on event channels
-  emt.on("arrow", checkArrow);
-  emt.on("flux", checkFlux);
-
-
-  // then do the actual wiring
-  wireCtrl("clock_pauser", "click", toggleClock);
-  wireCtrl("time_reverser", "click", reverseTime);
-  wireCtrl("slice_restorer", "click", restoreSlices);
-  wireCtrl("filter_list", "change", e => applyFilter(e.target.value), false);
-  // wireCtrl("mode_list", "change", e => applyFilter(e.target.value), false);
-
-  // initiate channels with locally stored prefs
-  emt.emit("arrow", localStorage.getItem("arrowDir"));
-  emt.emit("flux", localStorage.getItem("fluxState"));
 }
 
 function checkArrow(dir) {
@@ -91,11 +91,11 @@ function toggleClock() {
   if (localStorage.getItem("fluxState") === "flowing") {
     Clock.stop();
     localStorage.setItem("fluxState", "still");
-    emt.emit("flux", "still");
+    emitter.emit("flux", "still");
   } else {
     Clock.start();
     localStorage.setItem("fluxState", "flowing");
-    emt.emit("flux", "flowing");
+    emitter.emit("flux", "flowing");
   }
 }
 
@@ -103,7 +103,7 @@ function toggleClock() {
 function reverseTime() {
   arrow = arrow === "right" ? "left" : "right";
   localStorage.setItem("arrow", arrow);
-  emt.emit("arrow", arrow);
+  emitter.emit("arrow", arrow);
 }
 
 function restoreSlices() {

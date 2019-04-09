@@ -7,7 +7,7 @@ import Crown from "./Crown";
 import Apper from "./Apper";
 import Emitter from "./Emitter";
 
-let emt = new Emitter();
+let emitter = new Emitter();
 
 const TICK_DELAY = 32; // every few ms
 const SLICES = Data.get("slices");
@@ -18,10 +18,10 @@ function init(delay = TICK_DELAY) {
   generateSlices();
 
   // store all the els that get updates every TICK_DELAY
-  Face.wire(emt);
+  Face.wire(emitter);
 
   // the crown controls the watch
-  Crown.wire(emt);
+  Crown.wire(emitter);
 
   // with slices in the DOM, plot their demise
   Hider.wire();
@@ -33,10 +33,11 @@ function init(delay = TICK_DELAY) {
     Face.update();
   }
   // ready to prompt about app add
-  Apper.listenToPrompt();
+  Apper.listenToPrompt(emitter);
 }
 
 // populates DOM with slices and spaces them out vertically
+// TODO: make independent module? move elsewhere?
 function generateSlices() {
   const sliceList = document.getElementById("slice_list");
   const sliceTemplate = document.getElementById("slice_template").textContent;
@@ -49,9 +50,6 @@ function generateSlices() {
 
     // roll a fresh el
     let el = document.createElement("div");
-
-    // why can't I use textContent here?
-    // el.textContent = sliceTemplate;
 
     // use the template from the html <script>
     el.innerHTML = sliceTemplate;
@@ -73,8 +71,6 @@ function generateSlices() {
     // add the new slice elements to the DOM
     sliceList.appendChild(el);
   }
-
-  // return false;
 }
 
 function restartClock() {
