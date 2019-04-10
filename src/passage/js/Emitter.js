@@ -1,6 +1,8 @@
 // found as a comment on a gist
 // https://gist.github.com/mudge/5830382#gistcomment-2691957
 
+let debug = false;
+
 export default class Emitter {
   constructor() {
     this.events = {};
@@ -28,7 +30,7 @@ export default class Emitter {
   }
 
   emit(eventName, ...args) {
-    console.log('emitting', eventName, args);
+    if (debug) console.log('emitting', eventName, args);
     this._getEventListByName(eventName).forEach(
       function(fn) {
         fn.apply(this, args);

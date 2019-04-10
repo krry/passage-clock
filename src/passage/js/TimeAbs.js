@@ -83,9 +83,7 @@ function tickTime() {
   dsp["dayOfWeek"] = DAYS[nwt.day];
   dsp["monthName"] = MONTHS[nwt.month];
 
-  if (debug) {
-    console.dir(pc);
-  }
+  if (debug) console.dir(pc);
 
   // returns the ratios and the clock readouts
   return {
