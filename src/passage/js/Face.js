@@ -12,23 +12,18 @@ var position,
 
 const SLICES = Data.get("slices");
 
-function wireFace(emt) {
+function initFace(emt) {
   emitter = emt;
+  millis = document.getElementById("millis");
+
   for (let slice of SLICES) {
-    if (slice === "ms") {
-      millis = document.getElementById("millis");
-      continue;
-    }
-    currentTimes[slice] = document.querySelector(
-      "#" + slice + "Slice > .current-time"
-    );
-    percentGones[slice] = document.querySelector(
-      "#" + slice + "Slice > .percent-gone"
-    );
-    timeBands[slice] = document.querySelector(
-      "#" + slice + "Slice > .time-band"
-    );
+    if (slice === "ms") continue;
+    let sliceDiv = document.getElementById(slice+'Slice');
+    currentTimes[slice] = sliceDiv.querySelector(".current-time");
+    percentGones[slice] = sliceDiv.querySelector(".percent-gone");
+    timeBands[slice] = sliceDiv.querySelector(".time-band");
   }
+
   emitter.on("arrow", flipBands);
 }
 
@@ -74,6 +69,6 @@ function bandShift(slice) {
 }
 
 export default {
-  wire: wireFace,
+  init: initFace,
   update: updateFace
 };

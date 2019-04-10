@@ -1,17 +1,26 @@
-import Face from './Face'
+import Face from "./Face";
+import LS from "./Cacher";
 
-var clock;
+let clock;
 
-function startClock(tick = 32) {
-    clock = setInterval(Face.update, tick);
-    localStorage.setItem('fluxState', "flowing");
+function startClock() {
+  clock = setInterval(Face.update, LS.load("delay"));
 }
 
 function stopClock() {
-    clearInterval(clock)
+  clearInterval(clock);
+}
+
+function toggle(prop, val) {
+  if (prop === "fluxState") {
+    if (val === "flowing") {
+      startClock()
+    } else if (val === "still") {
+      stopClock()
+    }
+  }
 }
 
 export default {
-    start: startClock,
-    stop: stopClock,
-}
+  toggle
+};

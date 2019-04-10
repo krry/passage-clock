@@ -1,5 +1,6 @@
 button,
-select {
+select,
+.btn {
   background: transparent;
   color: var(--text-light);
   border-style: solid;
@@ -18,6 +19,11 @@ button {
 button,
 label {
   height: 3em;
+}
+
+.btn.bare {
+  appearance: none;
+  border: none;
 }
 
 label {
