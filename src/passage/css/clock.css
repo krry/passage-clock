@@ -5,7 +5,7 @@
   z-index: 2;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 5vh auto 5vh;
+  grid-template-rows: 0em auto 3em;
   grid-template-areas:
     "header"
     "main"
@@ -25,13 +25,7 @@
 @media screen and (min-height: 450px) {
   .clock {
     font-size: 100%;
-    grid-template-rows: 7.5vh auto 14vh;
+    grid-template-rows: 5em auto 7.5em;
   }
 }
 
-@media screen and (min-width: 500px) {
-  .clock {
-    font-size: 100%;
-    grid-template-rows: 7.5vh auto 7.5vh;
-  }
-}

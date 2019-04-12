@@ -28,13 +28,23 @@
 }
 
 .arrow.reversed {
+  transform-origin: center 72vh;
   transform: rotateX(360deg) rotateZ(180deg);
 }
 
-.arrow.spun {
-  transform: rotateY(180deg);
+@media (-webkit-min-device-pixel-ratio: 2) and (max-width: 500px), (min-resolution: 192dpi) and (max-width: 500px), (-webkit-min-device-pixel-ratio: 2) and (max-height: 500px) {
+  .arrow {
+    line-height: 120vh;
+    font-size: calc((64vw + 64vh) / 2);
+  }
+
+  .arrow.reversed {
+    transform-origin: center 70vh;
+  }
 }
 
-.arrow.flipped {
-  transform: rotateZ(180deg);
+@media (-webkit-min-device-pixel-ratio: 2) and (max-height: 500px) {
+  .arrow {
+    line-height: 100vh;
+  }
 }
