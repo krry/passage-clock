@@ -1,6 +1,7 @@
 import LS from "./Cacher";
 
-let emitter;
+let emitter,
+  filterCtrl;
 
 // wires display controls at footer to their functions
 function initCtrls(emt) {
@@ -9,6 +10,7 @@ function initCtrls(emt) {
 
   // wire controls for prefs
   wireCtrl("clock_pauser", "click", toggleClock);
+  wireCtrl("cycle_filter", "click", cycleFilter);
   wireCtrl("time_reverser", "click", reverseTime);
   wireCtrl("filter_ctrl", "change", e => {
     applyFilter(e.target.value) }, false);
@@ -29,6 +31,20 @@ function wireCtrl(el, evt, clbk, opts = {}) {
   let ctrl = document.getElementById(el);
   ctrl.addEventListener(evt, clbk, opts);
   emitter.emit("ctrls", el, true);
+}
+
+function cycleFilter() {
+  if (filterCtrl === undefined) {
+    filterCtrl = document.getElementById("filter_ctrl");
+  }
+  let opts = filterCtrl.options;
+  for (let i = 0; i < opts.length; i++) {
+    if (opts[i].value === LS.load("activeFilter")) {
+      let newFltr = (i === opts.length-1) ? opts[0].value : opts[i+1].value;
+      emitter.emit("filter", "activeFilter", newFltr);
+      break;
+    }
+  }
 }
 
 function toggleClock() {
@@ -63,7 +79,7 @@ function applyFilter(fltr) {
   let clockEl = document.getElementById("clock");
   let appliedFilters = clockEl.classList;
   if (appliedFilters.contains(fltr)) return true; // make sure it's a new filter
-  let filterCtrl = document.getElementById("filter_ctrl");
+  filterCtrl = document.getElementById("filter_ctrl");
   filterCtrl.value = fltr; // keep select in sync
   clockEl.classList.add(fltr); // apply the new filter
   LS.save("activeFilter", fltr);
@@ -85,11 +101,11 @@ function applyArrow(dir) {
 }
 
 function applyFlux(state) {
-  let clockPauser = document.getElementById("clock_pauser");
+  let toggleText = document.getElementById("toggle_text");
   if (state !== "still") {
-    clockPauser.textContent = "Be still";
+    toggleText.textContent = "Be still";
   } else {
-    clockPauser.textContent = "Flow on";
+    toggleText.textContent = "Flow on";
   }
 }
 

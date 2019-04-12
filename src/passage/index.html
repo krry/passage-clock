@@ -22,21 +22,23 @@
   <div class="ctrls">
     <button id="time_reverser" aria-label="reverse time" title="Spin the arrow
     of time">⇌ Reverse</button>
-    <label for="filter_ctrl">Filters
+    <button id="cycle_filter" class="">♼ Filter</button>
+    <label for="filter_ctrl" class="hidden">Filters
       <select name="filters" aria-label="apply filter" id="filter_ctrl">
         <option value="kodachrome">Koda</option>
-        <option value="sepiatone">Cleve</option>
-        <option value="grayscale">Dorian</option>
-        <option value="negative">sraM</option>
         <option value="volcano">lovevol</option>
-        <option value="xray">Ɣamma</option>
         <option value="arctic">Fris</option>
         <option value="jungle">Jung</option>
+        <option value="sepiatone">Cleve</option>
         <option value="ghost">Geist</option>
+        <option value="negative">sraM</option>
+        <option value="xray">Ɣamma</option>
+        <option value="grayscale">Dorian</option>
       </select>
     </label>
-    <button id="clock_pauser" aria-label="toggle time" title="Whoooooooa!">Be
-      still</button>
+    <button id="clock_pauser" aria-label="toggle time"
+      title="Whoooooooa!">⏯ <span id="toggle_text">Be
+        still</span></button>
   </div>
   <div id="photo_credit" class="humble">
     <button id="new_photo" class="btn bare" aria-label="new photo" onclick="location.reload()">🔀</button>
