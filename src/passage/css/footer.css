@@ -16,12 +16,6 @@ footer {
     );
 }
 
-@media screen and (min-width: 450px) {
-  footer {
-    padding: 0 1rem;
-  }
-}
-
 footer a {
   color: var(--text-light);
   text-decoration: none;
@@ -30,4 +24,34 @@ footer a {
 .humble {
   font-weight: lighter;
   font-size: 80%;
+}
+
+.ctrls {
+  order: 1;
+}
+
+#phone_home {
+  order: 2;
+}
+
+#photo_credit {
+  order: 3;
+}
+
+@media screen and (min-width: 480px) {
+  footer {
+    padding: 0 1rem;
+  }
+
+  .ctrls {
+    order: 2;
+  }
+
+  #phone_home {
+    order: 1;
+  }
+
+  #photo_credit {
+    order: 3;
+  }
 }

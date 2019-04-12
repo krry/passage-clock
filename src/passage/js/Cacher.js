@@ -16,5 +16,6 @@ function load(prop) {
 
 export default {
   load,
+  save,
   init: initCachers
-};
+}

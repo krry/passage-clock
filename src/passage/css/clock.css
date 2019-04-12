@@ -29,7 +29,7 @@
   }
 }
 
-@media screen and (min-width: 540px) {
+@media screen and (min-width: 500px) {
   .clock {
     font-size: 100%;
     grid-template-rows: 7.5vh auto 7.5vh;

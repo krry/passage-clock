@@ -10,12 +10,8 @@ function initCtrls(emt) {
   // wire controls for prefs
   wireCtrl("clock_pauser", "click", toggleClock);
   wireCtrl("time_reverser", "click", reverseTime);
-  // wireCtrl("slice_restorer", "click", _ => {
-  //   emitter.emit("slices", "all", "reset")
-  // });
   wireCtrl("filter_ctrl", "change", e => {
     applyFilter(e.target.value) }, false);
-  // wireCtrl("mode_list", "change", e => applyFilter(e.target.value), false);
 
   // add listeners for pref changes
   emitter.on("arrow", applyPref);
@@ -31,10 +27,8 @@ function initCtrls(emt) {
 // a DRYer way to wire the buttons
 function wireCtrl(el, evt, clbk, opts = {}) {
   let ctrl = document.getElementById(el);
-  if (!LS.load(el)) {
-    ctrl.addEventListener(evt, clbk, opts);
-    emitter.emit("ctrls", el, true);
-  }
+  ctrl.addEventListener(evt, clbk, opts);
+  emitter.emit("ctrls", el, true);
 }
 
 function toggleClock() {
@@ -44,7 +38,7 @@ function toggleClock() {
 
 // when the reverse button is hit, flip the bit in localStorage
 function reverseTime() {
-  let arrow = ( LS.load("arrow") === "right" ) ? "left" : "right";
+  let arrow = ( LS.load("arrowDir") === "right" ) ? "left" : "right";
   emitter.emit("arrow", "arrowDir", arrow);
 }
 
@@ -71,6 +65,8 @@ function applyFilter(fltr) {
   if (appliedFilters.contains(fltr)) return true; // make sure it's a new filter
   let filterCtrl = document.getElementById("filter_ctrl");
   filterCtrl.value = fltr; // keep select in sync
+  clockEl.classList.add(fltr); // apply the new filter
+  LS.save("activeFilter", fltr);
   for (let x of [...clockEl.classList]) {
     if (x !== "clock" && x !== fltr) {
       clockEl.classList.remove(x); // apply the new filter
@@ -80,9 +76,7 @@ function applyFilter(fltr) {
 
 function applyArrow(dir) {
   if (!dir) dir = "left";
-
   let arrowEl = document.getElementById("arrow");
-
   if (dir === "right") {
     arrowEl.classList.add("reversed");
   } else if (dir === "left") {
@@ -92,7 +86,6 @@ function applyArrow(dir) {
 
 function applyFlux(state) {
   let clockPauser = document.getElementById("clock_pauser");
-
   if (state !== "still") {
     clockPauser.textContent = "Be still";
   } else {

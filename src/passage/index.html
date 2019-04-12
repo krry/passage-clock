@@ -12,7 +12,6 @@
   <span class="innerspace"></span>
   <span class="percent-gone"></span>
   <div class="time-band"></div>
-  <button class="hide-slice btn bare"></button>
 </script>
 <div id="arrow" class="floater arrow"></div>
 <div id="millis" class="floater millis">
@@ -20,29 +19,25 @@
 </div>
 <footer>
   <div id="phone_home"><a href="https://github.com/krry/passage-clock/" target="_blank" rel="noopener">ᄽ῟｢❜ﭣ❜｣῏ᄿ</a></div>
-  <!-- <button id="slice_restorer" aria-label="restore slices" title="Where
-    have the years gone?">Restore slices</button> -->
-  <button id="time_reverser" aria-label="reverse time" title="Spin the arrow
-  of time">Reverse</button>
-  <select id="mode_list" class="hidden">
-    <option value="bars" default>Bars</option>
-    <option value="rings">Rings</option>
-  </select>
-  <label for="filter_ctrl">Filters
-    <select name="filters" aria-label="apply filter" id="filter_ctrl">
-      <option value="kodachrome">Koda</option>
-      <option value="sepiatone">Cleve</option>
-      <option value="grayscale">Dorian</option>
-      <option value="negative">sraM</option>
-      <option value="volcano">lovevol</option>
-      <option value="xray">Ɣamma</option>
-      <option value="arctic">Fris</option>
-      <option value="jungle">Jung</option>
-      <option value="ghost">Geist</option>
-    </select>
-  </label>
-  <button id="clock_pauser" aria-label="toggle time" title="Whoooooooa!">Be
-    still</button>
+  <div class="ctrls">
+    <button id="time_reverser" aria-label="reverse time" title="Spin the arrow
+    of time">⇌ Reverse</button>
+    <label for="filter_ctrl">Filters
+      <select name="filters" aria-label="apply filter" id="filter_ctrl">
+        <option value="kodachrome">Koda</option>
+        <option value="sepiatone">Cleve</option>
+        <option value="grayscale">Dorian</option>
+        <option value="negative">sraM</option>
+        <option value="volcano">lovevol</option>
+        <option value="xray">Ɣamma</option>
+        <option value="arctic">Fris</option>
+        <option value="jungle">Jung</option>
+        <option value="ghost">Geist</option>
+      </select>
+    </label>
+    <button id="clock_pauser" aria-label="toggle time" title="Whoooooooa!">Be
+      still</button>
+  </div>
   <div id="photo_credit" class="humble">
     <button id="new_photo" class="btn bare" aria-label="new photo" onclick="location.reload()">🔀</button>
     <a

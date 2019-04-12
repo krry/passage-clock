@@ -4,7 +4,8 @@ import LS from "./Cacher";
 let clock;
 
 function startClock() {
-  clock = setInterval(Face.update, LS.load("delay"));
+  let delay = LS.load("delay");
+  clock = setInterval(Face.update, delay);
 }
 
 function stopClock() {
@@ -13,10 +14,10 @@ function stopClock() {
 
 function toggle(prop, val) {
   if (prop === "fluxState") {
-    if (val === "flowing") {
-      startClock()
-    } else if (val === "still") {
+    if (val === "still") {
       stopClock()
+    } else {
+      startClock()
     }
   }
 }

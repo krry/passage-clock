@@ -11,13 +11,16 @@ let emitter = new Emitter();
 
 const SLICES = Data.get("slices");
 
-function init() {
+function init(delay = 32) {
+  if (delay !== 32) {
+    emitter.emit("flux", "delay", delay);
+  }
   generateSlices();
   Face.init(emitter);
-  Ctrls.init(emitter);
   Cacher.init(emitter);
-  Apper.listenToPrompt(emitter);
   emitter.on("flux", Clock.toggle);
+  Ctrls.init(emitter);
+  Apper.listenToPrompt(emitter);
 }
 
 // TODO: make slices draggable and hideable

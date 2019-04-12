@@ -1,5 +1,5 @@
 .clock {
-  transition: all 500ms ease-in-out;
+  transition: filter 500ms ease-in-out;
 }
 
 .clock::before {
