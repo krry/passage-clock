@@ -1,7 +1,17 @@
 const data = {
     debug: true,
+    abbrs: {
+        "tick": "t",
+        "second": "s",
+        "minute": "m",
+        "hour": "h",
+        "day": "D",
+        "week": "W",
+        "month": "M",
+        "year": "Y"
+    },
     slices: [
-        "ms",
+        "tick",
         "second",
         "minute",
         "hour",

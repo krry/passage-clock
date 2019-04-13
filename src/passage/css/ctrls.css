@@ -3,12 +3,12 @@ select,
 .btn {
   background: transparent;
   color: var(--text-light);
-  border-width: 2px;
+  border-width: 1px;
   border-style: solid;
   border-color: inherit;
   border-radius: 4px;
   font-family: inherit;
-  font-weight: bolder;
+  /* font-weight: bolder; */
   cursor: pointer;
   font-size: 1rem;
 }
@@ -22,12 +22,12 @@ select,
 
 @media screen and (min-width: 480px) {
   .ctrls {
-    flex-basis: auto;
+    flex-basis: 50%;
   }
 }
 
 button {
-  margin: 0.375em;
+  margin: 0 0.375em;
   line-height: 1;
 }
 

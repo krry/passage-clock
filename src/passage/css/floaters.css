@@ -4,23 +4,26 @@
   top: 0;
   left: 0;
   width: 100vw;
-  font-size: calc((32vw + 32vh) / 2);
+  font-size: calc((16vw + 16vh) / 2);
   text-align: center;
   opacity: 0.42;
   pointer-events: none;
 }
 
 .millis {
-  line-height: 70vh;
+  line-height: 60vh;
   font-family: "IBM Plex Mono", Inconsolata, monospace;
 }
 
 .arrow {
-  line-height: 140vh;
-  bottom: 0;
-  z-index: 5;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  margin-top: 45vh;
+  padding-bottom: 1vh;
+  will-change: transform;
   transition: 500ms ease-out;
-  transform-origin: center 75%;
+  transform: rotateZ(90deg);
 }
 
 .arrow::after {
@@ -28,23 +31,5 @@
 }
 
 .arrow.reversed {
-  transform-origin: center 72vh;
-  transform: rotateX(360deg) rotateZ(180deg);
-}
-
-@media (-webkit-min-device-pixel-ratio: 2) and (max-width: 500px), (min-resolution: 192dpi) and (max-width: 500px), (-webkit-min-device-pixel-ratio: 2) and (max-height: 500px) {
-  .arrow {
-    line-height: 120vh;
-    font-size: calc((64vw + 64vh) / 2);
-  }
-
-  .arrow.reversed {
-    transform-origin: center 70vh;
-  }
-}
-
-@media (-webkit-min-device-pixel-ratio: 2) and (max-height: 500px) {
-  .arrow {
-    line-height: 100vh;
-  }
+  transform: rotateZ(-90deg);
 }

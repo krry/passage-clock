@@ -30,14 +30,6 @@ footer a {
   order: 1;
 }
 
-#phone_home {
-  order: 2;
-}
-
-#photo_credit {
-  order: 3;
-}
-
 @media screen and (min-width: 480px) {
   footer {
     padding: 0 1rem;
@@ -45,13 +37,5 @@ footer a {
 
   .ctrls {
     order: 2;
-  }
-
-  #phone_home {
-    order: 1;
-  }
-
-  #photo_credit {
-    order: 3;
   }
 }

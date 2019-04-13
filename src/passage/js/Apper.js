@@ -1,3 +1,4 @@
+import LS from './Cacher';
 var deferredPrompt, asker, emitter;
 
 const listenToPrompt = emt => {

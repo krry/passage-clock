@@ -10,6 +10,7 @@ import Emitter from "./Emitter";
 let emitter = new Emitter();
 
 const SLICES = Data.get("slices");
+const ABBRS = Data.get("abbrs");
 
 function init(delay = 32) {
   if (delay !== 32) {
@@ -29,13 +30,14 @@ function generateSlices() {
   const sliceTemplate = document.getElementById("slice_template").textContent;
 
   for (let slice of SLICES.reverse()) {
-    if (slice === "ms") continue;
+    if (slice === "tick") continue;
 
     let el = document.createElement("div");
     el.innerHTML = sliceTemplate;
     el.setAttribute("id", slice + "Slice");
     el.classList.add("time-slice");
-    el.getElementsByClassName("time-unit")[0].textContent = slice;
+    el.classList.add(slice + "-slice");
+    el.getElementsByClassName("time-unit")[0].textContent = ABBRS[slice];
     sliceList.appendChild(el);
   }
 }

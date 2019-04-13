@@ -15,7 +15,7 @@ function tickTime() {
 
   // slice now time into units
   nwt = {
-    ms: nd.getMilliseconds(),
+    tick: nd.getMilliseconds(),
     second: nd.getSeconds(),
     minute: nd.getMinutes(),
     hour: nd.getHours(),
@@ -33,7 +33,7 @@ function tickTime() {
   var roundUp;
   for (var prop in nwt) {
     if (prop === "month") nwt[prop] = nwt[prop] + 1;
-    if (prop === "ms") {
+    if (prop === "tick") {
       utt[prop] = nwt[prop];
     } else if (prop === "date") {
       utt[prop] = nwt[prop] * msInA["day"] + utt["hour"];
@@ -49,7 +49,7 @@ function tickTime() {
   // calculates the proportion/ratio of each unit that has passed
   // WARNING: depends on the order of the slices in the object
   for (var prop in utt) {
-    if (prop === "ms") {
+    if (prop === "tick") {
       soFar = utt[prop];
       // in first step, store the ms value for second step
       psg[prop] = soFar;
@@ -69,8 +69,8 @@ function tickTime() {
   for (var prop in nwt) {
     if (prop === "year") {
       // years already have 4 digits
-      dsp[prop] = nwt[prop].toString();
-    } else if (prop === "ms") {
+      dsp[prop] = nwt[prop].toString().substr(2);
+    } else if (prop === "tick") {
       // ms might have 1-3 digits
       dsp[prop] = nwt[prop].toString().padStart(3, "0");
     } else {

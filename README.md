@@ -30,6 +30,8 @@ yarn dev
 Runs `webpack-dev-server` and pops your browser open to
 [`localhost:8080`](http://localhost:8080).
 
+The [Dev Log](docs/dev-log.md) may offer add'l insight.
+
 ## 🚢 Deployment
 
 ```
