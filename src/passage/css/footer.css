@@ -1,6 +1,9 @@
 footer {
-  position: relative;
-  grid-area: footer;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 7.5rem;
   justify-content: space-evenly;
   align-items: center;
   display: flex;
@@ -30,12 +33,50 @@ footer a {
   order: 1;
 }
 
+.brand {
+  font-size: 2.5em;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 12px;
+  position: relative;
+  flex-basis: 100%;
+  text-align: center;
+  margin: 0;
+}
+
 @media screen and (min-width: 480px) {
-  footer {
-    padding: 0 1rem;
+  .brand {
+    flex-basis: auto;
   }
 
-  .ctrls {
-    order: 2;
+  footer {
+    padding: 0 1rem;
+    height: 5rem;
   }
+
+  .humble {
+    font-size: 100%;
+  }
+}
+
+.asker {
+  display: flex;
+  transform: scale(1);
+  opacity: 1;
+  transition: 1000ms;
+}
+
+.asker.hidden {
+  display: none;
+  transform: scale(0.01);
+  opacity: 0;
+}
+
+#app_adder {
+  animation: 3s cubic-bezier(0.645, 0.045, 0.355, 1) infinite pulse;
+  box-shadow: 0 0 0 0 hsla(332, 76%, 75%, 0.5);
+}
+
+#app_noper:hover {
+  background-color: hsla(10, 85%, 60%, 1);
 }

@@ -6,6 +6,7 @@ import Glypher from "./Glypher";
 let millis,
     flipped,
     emitter,
+    animatedEls = [],
     currentTimes = {},
     percentGones = {},
     timeBands = {},
@@ -18,6 +19,10 @@ const SLICES = Data.get("slices");
 function initFace(emt) {
   emitter = emt;
   millis = document.getElementById("millis");
+  animatedEls.push(document.getElementById('clock'));
+  animatedEls.push(document.getElementById('slice_list'));
+  animatedEls.push(document.getElementById('arrow'));
+  animatedEls.push(document.getElementById('millis'));
 
   for (let slice of SLICES) {
     if (slice === "tick") continue;
@@ -27,6 +32,16 @@ function initFace(emt) {
     timeBands[slice] = sliceDiv.querySelector(".time-band");
   }
   emitter.on("arrow", flipBands);
+  emitter.on("flux", waltzAlong);
+}
+
+function waltzAlong(prop, val) {
+  if (prop === "fluxState") {
+    let playState = (val === "still") ? "paused" : "running";
+    for (let el of animatedEls) {
+      el.style.animationPlayState = playState;
+    }
+  }
 }
 
 function flipBands(prop, val) {

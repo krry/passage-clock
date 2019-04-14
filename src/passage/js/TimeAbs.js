@@ -5,13 +5,13 @@ const DAYS = Data.get("days");
 const MONTHS = Data.get("months");
 
 let debug = false;
-
+let nd;
 // splits time into units and relates those units to each other
 // gets called by updateTime every TICK_DELAY milliseconds
 function tickTime() {
   var nwt;
   // get the current time
-  let nd = new Date();
+  nd = new Date();
 
   // slice now time into units
   nwt = {

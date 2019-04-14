@@ -1,13 +1,143 @@
-.pleasant-guest.removing {
-  /* shrinks up before disappearing */
-  /* so siblings can slide into their new positions */
-  transform: scale(0.1);
-  transition: transform 500ms ease-in;
+@keyframes astral {
+  0%, 100% {
+    transform:
+      scale(1)
+      translateY(0)
+      rotateX(0deg)
+      rotateZ(2deg);
+    opacity: 1;
+  }
+
+  10% {
+    transform:
+      scale(0.95)
+      translateY(-2.5vh)
+      rotateX(10deg)
+      rotateZ(4deg);
+    opacity: 1;
+  }
+
+  20% {
+    transform:
+      scale(0.9)
+      translateY(-5vh)
+      rotateX(20deg)
+      rotateZ(2deg);
+    opacity: 1;
+  }
+
+  30% {
+    transform:
+      scale(0.95)
+      translateY(-7.5vh)
+      rotateX(30deg)
+      rotateZ(0deg);
+    opacity: 1;
+  }
+
+  40% {
+    transform:
+      scale(1)
+      translateY(-10vh)
+      rotateX(40deg)
+      rotateZ(-2deg);
+    opacity: 1;
+  }
+
+  50% {
+    transform:
+      scale(1.05)
+      translateY(-7.5vh)
+      rotateX(50deg)
+      rotateZ(-4deg);
+    opacity: 1;
+  }
+
+  60% {
+    transform:
+      scale(1.1)
+      translateY(-5vh)
+      rotateX(60deg)
+      rotateZ(-5deg);
+    opacity: 1;
+  }
+
+  70% {
+    transform:
+      scale(1.15)
+      translateY(0)
+      rotateX(45deg)
+      rotateZ(-6deg);
+    opacity: 1;
+  }
+
+  80% {
+    transform:
+      scale(1.2)
+      translateY(5vh)
+      rotateX(30deg)
+      rotateZ(-4deg);
+    opacity: 1;
+  }
+
+  90% {
+    transform:
+      scale(1.1)
+      translateY(0)
+      rotateX(15deg)
+      rotateZ(-2deg);
+    opacity: 1;
+  }
 }
 
-.pleasant-guest.adding {
-  transform: scale(1);
-  transition: transform 500ms ease-in;
+@keyframes thirdeye {
+  0%,
+  100% {
+    perspective: 100vw;
+    perspective-origin: center center;
+  }
+
+  20% {
+    perspective: 90vw;
+    perspective-origin: right center;
+  }
+
+  40% {
+    perspective: 80vw;
+    perspective-origin: right top;
+  }
+
+  60% {
+    perspective: 70vw;
+    perspective-origin: center top;
+  }
+
+  80% {
+    perspective: 90vw;
+    perspective-origin: left top;
+  }
+}
+
+@keyframes throb {
+  0% {
+    transform: scale(0.9);
+  }
+
+  10% {
+    transform: scale(1);
+  }
+
+  20% {
+    transform: scale(0.9);
+  }
+
+  30% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.5);
+  }
 }
 
 @keyframes pulse {

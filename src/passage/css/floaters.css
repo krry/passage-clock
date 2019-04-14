@@ -2,34 +2,41 @@
   position: fixed;
   z-index: 0;
   top: 0;
+  bottom: 0;
   left: 0;
-  width: 100vw;
-  font-size: calc((16vw + 16vh) / 2);
+  right: 0;
+  margin: auto;
   text-align: center;
-  opacity: 0.42;
   pointer-events: none;
 }
 
 .millis {
-  line-height: 60vh;
+  line-height: 100vh;
   font-family: "IBM Plex Mono", Inconsolata, monospace;
+  opacity: 0.12;
+  z-index: 1000;
+  font-size: 75vh;
+  animation: throb 100s infinite;
 }
 
 .arrow {
-  left: 0;
-  right: 0;
-  z-index: 10;
-  margin-top: 45vh;
-  padding-bottom: 1vh;
+  top: 12vh;
+  width: 25vw;
+  height: 25vh;
+  font-size: 22vh;
+  z-index: 30;
+  opacity: 0.621;
   will-change: transform;
-  transition: 500ms ease-out;
-  transform: rotateZ(90deg);
 }
 
 .arrow::after {
   content: "⟿";
+  display: block;
+  transition: 400ms ease-out;
+  transform-origin: center center;
+  transform: rotateZ(90deg) translateY(-2rem);
 }
 
-.arrow.reversed {
-  transform: rotateZ(-90deg);
+.arrow.reversed::after {
+  transform: rotateZ(-90deg) translateY(2rem);
 }

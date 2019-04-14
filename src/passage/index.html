@@ -1,19 +1,9 @@
-<header>
-  <h1 class="brand" title="Sounds like massage">PASSAGE</h1>
-  <div id="app_asker" class="asker hidden">
-    <button id="app_adder" class="app-adder">Add as app</button>
-    <button id="app_noper" class="app-adder">Nope</button>
+<main id="slice_list" class="slices">
+  <div id="arrow" class="floater arrow"></div>
+  <div id="millis" class="floater millis">
+    <button class="hide-slice btn bare"></button>
   </div>
-  <div id="phone_home" class="humble">
-    <a href="https://krry.github.io" target="_blank" rel="noopener">ᄽ῟｢❜ﭣ❜｣῏ᄿ</a>
-    <button id="new_photo" class="btn bare" aria-label="new photo" onclick="location.reload()">🔀</button>
-    <a
-       href="https://unsplash.com/collections/4593575/passage"
-       title="https://source.unsplash.com/collection/4593575"
-       target="_blank" rel="noopener">📷💦</a>
-  </div>
-</header>
-<main id="slice_list" class="slices"></main>
+</main>
 <script id="slice_template" type="x-template">
   <span class="innerspace">
     <span class="time-unit"></span>
@@ -22,30 +12,37 @@
   <span class="percent-gone"></span>
   <div class="time-band"></div>
 </script>
-<div id="arrow" class="floater arrow"></div>
-<div id="millis" class="floater millis">
-  <button class="hide-slice btn bare"></button>
-</div>
 <footer>
-  <div class="ctrls">
-    <button id="time_reverser" aria-label="reverse time" title="Spin the arrow
-    of time">⇌ Reverse</button>
-    <button id="clock_pauser" aria-label="toggle time"
-      title="Whoooooooa!">⏯ <span id="toggle_text">Be
-        still</span></button>
-    <button id="cycle_filter" class="">♼ Lens</button>
-    <label for="filter_ctrl" class="hidden">Lenses
-      <select name="filters" aria-label="apply filter" id="filter_ctrl">
-        <option value="kodachrome">Koda</option>
-        <option value="volcano">lovevol</option>
-        <option value="arctic">Fris</option>
-        <option value="jungle">Jung</option>
-        <option value="sepiatone">Cleve</option>
-        <option value="ghost">Geist</option>
-        <option value="negative">sraM</option>
-        <option value="xray">Ɣamma</option>
-        <option value="grayscale">Dorian</option>
-      </select>
-    </label>
+  <h1 class="brand" title="Sounds like massage">PASSAGE</h1>
+  <button id="time_reverser" class="btn ctrl" aria-label="reverse time"
+    title="Spin the arrow of time">🔃
+    <span class="extra">Reverse</span></button>
+  <button id="clock_pauser" class="btn ctrl" aria-label="toggle time" title="Whoooooooa!">⏯ 
+    <span id="toggle_text" class="extra">Be still</span></button>
+  <button id="cycle_filter" class="btn ctrl">♼ <span class="extra">Lens</span></button>
+  <button id="new_photo" class="btn ctrl" aria-label="new photo" onclick="location.reload()">🔀</button>
+  <label for="filter_ctrl" class="hidden">Lenses
+    <select name="filters" aria-label="apply filter" id="filter_ctrl">
+      <option value="kodachrome">Koda</option>
+      <option value="volcano">lovevol</option>
+      <option value="arctic">Fris</option>
+      <option value="jungle">Jung</option>
+      <option value="sepiatone">Cleve</option>
+      <option value="ghost">Geist</option>
+      <option value="negative">sraM</option>
+      <option value="xray">Ɣamma</option>
+      <option value="grayscale">Dorian</option>
+    </select>
+  </label>
+  <div id="app_asker" class="asker hidden">
+    <button id="app_adder" class="app-adder">📲<span class="extra"> Add as app</span></button>
+    <button id="app_noper" class="app-adder">📵<span class="extra">Nope</span></button>
+  </div>
+  <div id="phone_home" class="humble">
+    <a
+      href="https://unsplash.com/collections/4593575/passage"
+      title="https://source.unsplash.com/collection/4593575"
+      target="_blank" rel="noopener">📷<span class="extra"> Unsplash </span>💦</a>
+    <a href="https://krry.github.io" target="_blank" rel="noopener">ᄽ῟｢❜ﭣ❜｣῏ᄿ</a>
   </div>
 </footer>
