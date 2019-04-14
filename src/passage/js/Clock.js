@@ -1,10 +1,10 @@
 import Face from "./Face";
 import LS from "./Cacher";
 
-let clock;
+var clock;
 
 function startClock() {
-  let delay = LS.load("delay");
+  let delay = LS.load("delay") || 32;
   clock = setInterval(Face.update, delay);
 }
 

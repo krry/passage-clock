@@ -13,14 +13,13 @@ const SLICES = Data.get("slices");
 const ABBRS = Data.get("abbrs");
 
 function init(delay = 32) {
-  if (delay !== 32) {
-    emitter.emit("flux", "delay", delay);
-  }
   generateSlices();
+  window.addEventListener('keydown', handleFirstTab);
   Face.init(emitter);
   Cacher.init(emitter);
-  emitter.on("flux", Clock.toggle);
+  emitter.emit("flux", "delay", delay);
   Ctrls.init(emitter);
+  emitter.on("flux", Clock.toggle);
   Apper.listenToPrompt(emitter);
 }
 
@@ -40,6 +39,14 @@ function generateSlices() {
     el.getElementsByClassName("time-unit")[0].textContent = ABBRS[slice];
     sliceList.appendChild(el);
   }
+}
+
+// if keyboard navver, leave the visual accommodations alone
+function handleFirstTab(e) {
+    if (e.keyCode === 9) { // the "I am a keyboard user" key
+        document.body.classList.add('user-is-tabbing');
+        window.removeEventListener('keydown', handleFirstTab);
+    }
 }
 
 export default {

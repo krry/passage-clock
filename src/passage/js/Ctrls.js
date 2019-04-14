@@ -1,7 +1,7 @@
 import LS from "./Cacher";
+import Puppeteer from "./Puppeteer";
 
-let emitter,
-  filterCtrl;
+let emitter, filterCtrl;
 
 // wires display controls at footer to their functions
 function initCtrls(emt) {
@@ -12,8 +12,11 @@ function initCtrls(emt) {
   wireCtrl("clock_pauser", "click", toggleClock);
   wireCtrl("cycle_filter", "click", cycleFilter);
   wireCtrl("time_reverser", "click", reverseTime);
-  wireCtrl("filter_ctrl", "change", e => {
-    applyFilter(e.target.value) }, false);
+  wireCtrl("chill_burner", "click", Puppeteer.tempCheck);
+  wireCtrl( "filter_ctrl", "change", e => {
+      applyFilter(e.target.value);
+    }, false
+  );
 
   // add listeners for pref changes
   emitter.on("arrow", applyPref);
@@ -24,6 +27,8 @@ function initCtrls(emt) {
   emitter.emit("arrow", "arrowDir", LS.load("arrowDir"));
   emitter.emit("flux", "fluxState", LS.load("fluxState"));
   emitter.emit("filter", "activeFilter", LS.load("activeFilter"));
+
+  Puppeteer.init(emt);
 }
 
 // a DRYer way to wire the buttons
@@ -38,9 +43,13 @@ function cycleFilter() {
     filterCtrl = document.getElementById("filter_ctrl");
   }
   let opts = filterCtrl.options;
+  if (!LS.load("activeFilter")) {
+    emitter.emit("filter", "activeFilter", filterCtrl.value);
+    return;
+  }
   for (let i = 0; i < opts.length; i++) {
     if (opts[i].value === LS.load("activeFilter")) {
-      let newFltr = (i === opts.length-1) ? opts[0].value : opts[i+1].value;
+      let newFltr = i === opts.length - 1 ? opts[0].value : opts[i + 1].value;
       emitter.emit("filter", "activeFilter", newFltr);
       break;
     }
@@ -48,13 +57,13 @@ function cycleFilter() {
 }
 
 function toggleClock() {
-  let state = ( LS.load("fluxState") === "flowing" ) ? "still" : "flowing";
+  let state = LS.load("fluxState") === "flowing" ? "still" : "flowing";
   emitter.emit("flux", "fluxState", state);
 }
 
 // when the reverse button is hit, flip the bit in localStorage
 function reverseTime() {
-  let arrow = ( LS.load("arrowDir") === "right" ) ? "left" : "right";
+  let arrow = LS.load("arrowDir") === "right" ? "left" : "right";
   emitter.emit("arrow", "arrowDir", arrow);
 }
 
@@ -96,7 +105,7 @@ function applyArrow(dir) {
   if (dir === "right") {
     arrowEl.classList.add("reversed");
   } else if (dir === "left") {
-      arrowEl.classList.remove("reversed");
+    arrowEl.classList.remove("reversed");
   }
 }
 
