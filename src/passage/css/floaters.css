@@ -12,20 +12,22 @@
 
 .millis {
   line-height: 100vh;
-  font-family: "IBM Plex Mono", Inconsolata, monospace;
-  opacity: 0.32;
+  font-family: "IBM Plex Mono", system-ui, monospace;
+  opacity: 0.22;
   z-index: 1000;
-  font-size: 75vh;
-  animation: throb 100s infinite;
+  font-size: 42vh;
+  animation-name: throb, drift;
+  animation-duration: 100s, 50s;
+  animation-iteration-count: infinite, infinite;
 }
 
 .arrow {
   top: 2vh;
   width: 25vw;
   height: 25vh;
-  font-size: 42vh;
+  font-size: 22vh;
   z-index: 30;
-  opacity: 0.621;
+  opacity: 0.361;
   will-change: transform;
   transition: 400ms ease-out;
   transform: translateX(5rem) translateY(-7rem);
@@ -60,7 +62,7 @@
 
 @media screen and (min-height: 480px) and (min-width: 480px) {
   .arrow {
-    font-size: 30vh;
+    font-size: 22vh;
   }
 
   .arrow.reversed {

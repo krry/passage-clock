@@ -1,7 +1,7 @@
 import LS from "./Cacher";
 import Puppeteer from "./Puppeteer";
 
-let emitter, filterCtrl;
+let emitter, filterCtrl, glyphCtrl;
 
 // wires display controls at footer to their functions
 function initCtrls(emt) {
@@ -11,6 +11,7 @@ function initCtrls(emt) {
   // wire controls for prefs
   wireCtrl("clock_pauser", "click", toggleClock);
   wireCtrl("cycle_filter", "click", cycleFilter);
+  wireCtrl("cycle_glyphs", "click", cycleGlyphs);
   wireCtrl("time_reverser", "click", reverseTime);
   wireCtrl("chill_burner", "click", Puppeteer.tempCheck);
   wireCtrl( "filter_ctrl", "change", e => {
@@ -21,12 +22,13 @@ function initCtrls(emt) {
   // add listeners for pref changes
   emitter.on("arrow", applyPref);
   emitter.on("flux", applyPref);
-  emitter.on("filter", applyPref);
+  emitter.on("face", applyPref);
 
   // load prefs from LS and emit them
   emitter.emit("arrow", "arrowDir", LS.load("arrowDir"));
   emitter.emit("flux", "fluxState", LS.load("fluxState"));
-  emitter.emit("filter", "activeFilter", LS.load("activeFilter"));
+  emitter.emit("face", "activeFilter", LS.load("activeFilter"));
+  emitter.emit("face", "activeGlyphs", LS.load("activeGlyphs"));
 
   Puppeteer.init(emt);
 }
@@ -44,13 +46,31 @@ function cycleFilter() {
   }
   let opts = filterCtrl.options;
   if (!LS.load("activeFilter")) {
-    emitter.emit("filter", "activeFilter", filterCtrl.value);
+    emitter.emit("face", "activeFilter", filterCtrl.value);
     return;
   }
   for (let i = 0; i < opts.length; i++) {
     if (opts[i].value === LS.load("activeFilter")) {
       let newFltr = i === opts.length - 1 ? opts[0].value : opts[i + 1].value;
-      emitter.emit("filter", "activeFilter", newFltr);
+      emitter.emit("face", "activeFilter", newFltr);
+      break;
+    }
+  }
+}
+
+function cycleGlyphs() {
+  if (glyphCtrl === undefined) {
+    glyphCtrl = document.getElementById("glyph_ctrl");
+  }
+  let opts = glyphCtrl.options;
+  if (!LS.load("activeGlyphs")) {
+    emitter.emit("face", "activeGlyphs", glyphCtrl.value);
+    return;
+  }
+  for (let i = 0; i < opts.length; i++) {
+    if (opts[i].value === LS.load("activeGlyphs")) {
+      let newGlyphs = i === opts.length - 1 ? opts[0].value : opts[i + 1].value;
+      emitter.emit("face", "activeGlyphs", newGlyphs);
       break;
     }
   }

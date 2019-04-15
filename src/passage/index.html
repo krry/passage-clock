@@ -24,7 +24,24 @@
   <button id="clock_pauser" class="btn ctrl" aria-label="toggle time" title="Whoooooooa!">⏯ 
     <span id="toggle_text" class="extra">Be still</span></button>
   <button id="cycle_filter" class="btn ctrl">♼ <span class="extra">Lens</span></button>
+  <button id="cycle_glyphs" class="btn ctrl">🔣<span class="extra">Glyphs</span></button>
   <button id="new_photo" class="btn ctrl" aria-label="new photo" onclick="location.reload()">🔀</button>
+  <div id="app_asker" class="asker hidden">
+    <button id="app_adder" class="app-adder">📲<span class="extra"> Add as app</span></button>
+    <button id="app_noper" class="app-adder">📵<span class="extra">Nope</span></button>
+  </div>
+  <label for="glyph_ctrl" class="hidden">Glyphs
+    <select name="glyphs" aria-label="apply glyphs" id="glyph_ctrl">
+      <option default value="none">Nunya</option>
+      <option value="rando">Rando</option>
+      <option value="planer">Planer</option>
+      <option value="games">Gamer</option>
+      <option value="holy">Sakred</option>
+      <!-- <option value="zodiac">Arthur</option> -->
+      <!-- <option value="domino">Domino</option> -->
+      <!-- <option value="cards">Tarot</option> -->
+    </select>
+  </label>
   <label for="filter_ctrl" class="hidden">Lenses
     <select name="filters" aria-label="apply filter" id="filter_ctrl">
       <option default value="kodachrome">Koda</option>
@@ -38,10 +55,6 @@
       <option value="grayscale">Dorian</option>
     </select>
   </label>
-  <div id="app_asker" class="asker hidden">
-    <button id="app_adder" class="app-adder">📲<span class="extra"> Add as app</span></button>
-    <button id="app_noper" class="app-adder">📵<span class="extra">Nope</span></button>
-  </div>
   <div id="phone_home" class="humble">
     <a
       href="https://unsplash.com/collections/4593575/passage"

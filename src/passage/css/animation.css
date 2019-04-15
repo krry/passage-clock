@@ -180,3 +180,12 @@
     background-position: 0% 50%;
   }
 }
+
+@keyframes drift {
+  from {
+    transform: translate3d(-10vh, 10vh, -10vh) skew(5deg, 5deg);
+  }
+  to {
+    transform: translate3d(10vh, -10vh, 10vh) skew(-5deg, -5deg);
+  }
+}

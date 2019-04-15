@@ -77,50 +77,50 @@
 }
 
 /* years */
-.time-slice:nth-child(1) {
+.year-slice {
   width: calc((700% / 7));
   z-index: 1;
-  transform: translateZ(8vh);
+  transform: translateZ(5vh);
 }
 
 /* months */
 .month-slice {
   width: calc((600% / 7));
   z-index: 2;
-  transform: translateZ(10vh);
+  transform: translateZ(15vh);
 }
 
 /* weeks */
 .week-slice {
   width: calc((500% / 7));
   z-index: 3;
-  transform: translateZ(12vh);
+  transform: translateZ(25vh);
 }
 
 /* days */
 .day-slice {
   width: calc((400% / 7));
   z-index: 4;
-  transform: translateZ(14vh);
+  transform: translateZ(35vh);
 }
 
 /* hours */
 .hour-slice {
   width: calc((300% / 7));
   z-index: 5;
-  transform: translateZ(16vh);
+  transform: translateZ(45vh);
 }
 
 /* minutes */
 .minute-slice {
   width: calc((200% / 7));
   z-index: 6;
-  transform: translateZ(18vh);
+  transform: translateZ(55vh);
 }
 
 /* seconds */
 .second-slice {
   width: calc((100% / 7));
   z-index: 7;
-  transform: translateZ(20vh);
+  transform: translateZ(65vh);
 }

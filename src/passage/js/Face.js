@@ -1,3 +1,4 @@
+import LS from "./Cacher";
 import Data from "./Data";
 import Time from "./TimeAbs";
 import Glypher from "./Glypher";
@@ -11,7 +12,8 @@ let millis,
     timeBands = {},
     lastTime = {},
     lastPercent = {},
-    lastBandPos = {};
+    lastBandPos = {},
+    glyphMode;
 
 const SLICES = Data.get("slices");
 
@@ -26,7 +28,16 @@ function initFace(emt) {
     percentGones[slice] = sliceDiv.querySelector(".percent-gone");
     timeBands[slice] = sliceDiv.querySelector(".time-band");
   }
+  glyphMode = LS.load("activeGlyphs");
+
   emitter.on("arrow", flipBands);
+  emitter.on("face", flipGlyphs);
+}
+
+function flipGlyphs(prop, val) {
+  if (prop === "activeGlyphs") {
+    glyphMode = val;
+  }
 }
 
 function flipBands(prop, val) {
@@ -47,7 +58,7 @@ function updateFace() {
   // parses out the pc object slice by slice
   for (let slice of SLICES) {
     if (slice === "tick") {
-      millis.textContent = Glypher.numbTo(moment.dsp[slice]);
+      millis.textContent = Glypher.numbTo(moment.dsp[slice], glyphMode);
       continue;
     }
     updateDisplayTime(slice, moment);
