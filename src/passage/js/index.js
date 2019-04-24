@@ -18,8 +18,8 @@ function init(delay = 32) {
   Face.init(emitter);
   Cacher.init(emitter);
   emitter.emit("flux", "delay", delay);
-  Ctrls.init(emitter);
   emitter.on("flux", Clock.toggle);
+  Ctrls.init(emitter);
   Apper.listenToPrompt(emitter);
 }
 
