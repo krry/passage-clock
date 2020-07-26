@@ -2,7 +2,6 @@ import LS from "./Cacher";
 import Data from "./Data";
 import Time from "./TimeAbs";
 import Glypher from "./Glypher";
-// import Sortable from '@shopify/draggable/src/Sortable/Sortable.js';
 
 let millis,
     flipped,
@@ -69,6 +68,9 @@ function updateFace() {
 // returns the clock readouts from the sliceTime object
 function updateDisplayTime(slice, moment) {
   let newDisplayTime = moment.dsp[slice];
+  if (slice === "month") {
+    newDisplayTime = "0" + (parseInt(newDisplayTime) + 1).toString();
+  }
   if (Math.abs(newDisplayTime - lastTime[slice]) > 0.1 || lastTime[slice] === undefined) {
     lastTime[slice] = newDisplayTime;
     currentTimes[slice].textContent = newDisplayTime;

@@ -7,7 +7,7 @@ function numbToGlyph(numb, mode) {
   } else if (mode === "zodiac") {
     return zodiacSwitch(numb);
   } else if (mode === "none") {
-    return "";
+    return numb;
   } else if (mode === "games") {
     return gameSwitch(numb);
   } else if (mode === "holy") {
