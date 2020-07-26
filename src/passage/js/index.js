@@ -4,6 +4,7 @@ import Face from "./Face";
 import Clock from "./Clock";
 import Ctrls from "./Ctrls";
 import Apper from "./Apper";
+import Idler from "./Idler";
 import Cacher from "./Cacher";
 import Emitter from "./Emitter";
 
@@ -20,6 +21,7 @@ function init(delay = 32) {
   emitter.emit("flux", "delay", delay);
   emitter.on("flux", Clock.toggle);
   Ctrls.init(emitter);
+  Idler.activate();
   Apper.listenToPrompt(emitter);
 }
 

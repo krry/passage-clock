@@ -40,6 +40,16 @@ function wireCtrl(el, evt, clbk, opts = {}) {
   emitter.emit("ctrls", el, true);
 }
 
+function hideCtrls() {
+  const ctrls = document.querySelector('#ctrls');
+  ctrls.classList.add('hidden');
+}
+
+function showCtrls() {
+  const ctrls = document.querySelector('#ctrls');
+  ctrls.classList.remove('hidden');
+}
+
 function cycleFilter() {
   if (filterCtrl === undefined) {
     filterCtrl = document.getElementById("filter_ctrl");
@@ -139,5 +149,7 @@ function applyFlux(state) {
 }
 
 export default {
-  init: initCtrls
+  init: initCtrls,
+  hide: hideCtrls,
+  show: showCtrls,
 };
