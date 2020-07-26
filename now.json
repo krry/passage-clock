@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "alias": "passage.atmanautica.com",
+  "alias": "passage.atmanaut.us",
   "builds": [
     {"src": "package.json", "use": "@now/static-build"}
   ],

@@ -5,7 +5,7 @@ const data = {
         "second": "s",
         "minute": "m",
         "hour": "h",
-        "day": "D",
+        "date": "D",
         "week": "W",
         "month": "M",
         "year": "Y"
@@ -15,7 +15,7 @@ const data = {
         "second",
         "minute",
         "hour",
-        "day",
+        "date",
         "week",
         "month",
         "year"

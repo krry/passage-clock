@@ -81,6 +81,9 @@ function updateDisplayTime(slice, moment) {
 function updatePercent(slice, moment) {
   let newPercent = moment.psg[slice] * 100;
   if (Math.abs(newPercent - lastPercent[slice]) > 0.01 || lastPercent[slice] === undefined) {
+    if (slice === "date") {
+      console.log('newPercent', newPercent);
+    }
     lastPercent[slice] = newPercent;
     percentGones[slice].textContent = newPercent.toFixed(2).padStart(5, "0") + "%";
     updateBandPos(slice, moment);
