@@ -6,10 +6,13 @@ let lastKnownMonth,
   msInA = {};
 
 // returns the week no. out of the year
-function weekOfYear(d) {
-  d.setHours(0, 0, 0);
-  d.setDate(d.getDate() + 4 - (d.getDay() || 7));
-  return Math.ceil(((d - new Date(d.getFullYear(), 0, 1)) / 8.64e7 + 1) / 7);
+function weekOfYear(nd) {
+  const woy = new Date(nd);
+  woy.setHours(0, 0, 0);
+  woy.setDate(nd.getDate() + 4 - (nd.getDay() || 7));
+  const yearo = new Date(nd.getFullYear(), 0, 1);
+  const wkofyr = Math.ceil(((woy - yearo) / 8.64e7 + 1) / 7);
+  return wkofyr;
 }
 
 // handle leap years

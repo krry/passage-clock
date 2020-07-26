@@ -4,35 +4,38 @@ import Calendar from "./Calendar";
 const DAYS = Data.get("days");
 const MONTHS = Data.get("months");
 
-let debug = false;
-let nd;
+let debug = false,
+    nwt,
+    msInA;
+
 // splits time into units and relates those units to each other
 // gets called by updateTime every TICK_DELAY milliseconds
+
 function tickTime() {
-  var nwt;
   // get the current time
-  nd = new Date();
+  const newDate = new Date(); // nd ~= newdate
 
-  // slice now time into units
-  nwt = {
-    tick: nd.getMilliseconds(),
-    second: nd.getSeconds(),
-    minute: nd.getMinutes(),
-    hour: nd.getHours(),
-    day: nd.getDay(),
-    week: Calendar.weekOfYear(nd),
-    date: nd.getDate(),
-    month: nd.getMonth(),
-    year: nd.getFullYear()
+  // slice the date object into useful units
+  nwt = { // nwt ~= nowtime
+    tick:   newDate.getMilliseconds(),
+    second: newDate.getSeconds(),
+    minute: newDate.getMinutes(),
+    hour:   newDate.getHours(),
+    day:    newDate.getDay(),
+    week:   null,
+    date:   newDate.getDate(),
+    month:  newDate.getMonth(),
+    year:   newDate.getFullYear(),
   };
-
-  let msInA = Calendar.countMillis(nwt);
+  // calculate what week it is
+  nwt.week = Calendar.weekOfYear(newDate);
+  msInA = Calendar.countMillis(nwt);
 
   let utt = {}; // utt ~= up to this
   // calculates the count in ms of each unit that has passed
   var roundUp;
   for (var prop in nwt) {
-    if (prop === "month") nwt[prop] = nwt[prop] + 1;
+    // if (prop === "month") nwt[prop] = nwt[prop] + 1;
     if (prop === "tick") {
       utt[prop] = nwt[prop];
     } else if (prop === "date") {
@@ -83,15 +86,13 @@ function tickTime() {
   dsp["dayOfWeek"] = DAYS[nwt.day];
   dsp["monthName"] = MONTHS[nwt.month];
 
-  if (debug) console.dir(pc);
-
   // returns the ratios and the clock readouts
   return {
     psg,
-    dsp
+    dsp,
   };
 }
 
 export default {
-  tick: tickTime
+  tick: tickTime,
 };
