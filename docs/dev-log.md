@@ -7,6 +7,49 @@ and to formalize my approach to design and development by forcing myself to
 extrude it into explanations (or justifications) here.  I'll develop the
 vision for the versions here.
 
+## v4.1 - 2020.07.25
+
+I noticed while revisiting this old thing that the date displayed is obscenely wrong.
+
+What gives? Time for some debugging.
+
+---
+
+As it turns out, the crux was mutability, mutation, which I only become aware
+of earlier today while [brushing up on some React](). It's funny-not-funny
+how the Universe seems to contain only just enough to keep us engaged, to keep
+us believing the forms are real. Metaphysics aside, I found that [the Date
+object in JavaScript is a tricky little mink])(https://css-tricks.com/everything-you-need-to-know-about-date-in-javascript/). Here's how…
+
+You can ask the browser to generate a Date object and assign it to a variable
+name. Then if you assign that to another variable, the same Date object
+underlies both. So then if you were to `set` the Date object in any fashion,
+[the mutation will show up everywhere that Date object is referenced](https://unspecified.wordpress.com/2013/08/02/why-you-should-never-mutate-a-javascript-date/). To avoid
+this confusion, we can create new instances of the Date object like so:
+
+```javascript
+let newDate = new Date(2020, 07, 31);
+let anotherNewDate = new Date(newDate);
+newDate.setDate(22); // 2020-07-22
+anotherNewDate.getDate() !== 22; // 2020-07-31
+```
+
+This conundrum lies at the root of how React operates. Or rather, avoiding
+this conundrum is a core competency of React. By enforcing [strict, deep
+immutability, as scary as that sounds](https://alistapart.com/article/why-mutation-can-be-scary/)
+of data objects, React allows us to jump forward and back among
+states of the application as though time is more than one-dimensional and more
+than one-directional. Pro tip: it is.
+
+So now that I am creating a few instances of the Date object, the weirdness
+went away and the old passage clock is zipping along like a hummingbird on
+ritalin. This debugging process has been torturous, and downright educational,
+like being repeatedly socked in the face and the groin with slightly randomly
+alternating blows. Can I write something useful to commemorate the occasion
+and process the trauma? Perhaps. Maybe I'll keep it short.
+
+
+
 ## v4.0 - 2019.04.12
 
 Today I knocked out a few quick fixes and features out. Landscape layout is
