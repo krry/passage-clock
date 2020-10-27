@@ -69,7 +69,13 @@ function updateFace() {
 function updateDisplayTime(slice, moment) {
   let newDisplayTime = moment.dsp[slice];
   if (slice === "month") {
-    newDisplayTime = "0" + (parseInt(newDisplayTime) + 1).toString();
+    // month slices start out zero-indexed
+    // month 9 is October which will become 10
+    newDisplayTime = (parseInt(newDisplayTime) + 1).toString();
+    if (newDisplayTime < 9) {
+      // we only add a leading zero to months < 9
+      newDisplayTime = "0" + newDisplayTime;
+    }
   }
   if (Math.abs(newDisplayTime - lastTime[slice]) > 0.1 || lastTime[slice] === undefined) {
     lastTime[slice] = newDisplayTime;
