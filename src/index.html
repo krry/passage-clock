@@ -22,9 +22,18 @@
     <meta name="theme-color" content="#ffffff">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,700|IBM+Plex+Mono" rel="stylesheet">
     <link rel="shortcut icon" href="favicons/favicon.ico">
+    <script src="https://kerry.ink/widgets/webring/webring.wc.js"></script>
     <title>Passage ⟿</title>
   </head>
   <body>
+    <!-- Webring Widget (Bottom Right) -->
+    <webring-widget 
+      data-source="https://kerry.ink/widgets/webring/webring.json"
+      mode="compact" 
+      theme="auto"
+      style="position: fixed; bottom: 2rem; right: 2rem; max-width: 320px; z-index: 1000;"
+    ></webring-widget>
+    
     <script>
       // Check that service workers are registered
       if ('serviceWorker' in navigator) {
