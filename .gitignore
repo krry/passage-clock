@@ -35,3 +35,5 @@ Temporary Items
 .tags
 
 .now
+# Local Netlify folder
+.netlify
